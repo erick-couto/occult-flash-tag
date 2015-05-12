@@ -1,0 +1,219 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+
+            <Button
+            android:id="@+id/btn_flash_measurement"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+       		android:gravity="center"
+            android:layout_gravity="top"
+            android:onClick="measure"
+            android:text="@string/out_text_flash_measurement" />
+    
+    
+    		<TextView
+	        android:id="@+id/txt_status_bar"
+	    	android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+    		android:gravity="center"
+    		android:textSize="12sp"
+        	android:textStyle="bold"
+        	android:typeface="monospace"
+        	android:paddingBottom="20sp"
+	        android:text="@string/out_status_bar_ready" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+    
+	    <TextView
+	        android:id="@+id/lbl_estimated_utc_1"
+			android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
+        	android:text="@string/out_estimated_utc_1" />
+
+       	<TextView
+	        android:id="@+id/txt_estimated_utc1"
+			android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
+        	android:text="@string/out_empty_timer"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:typeface="monospace" />
+        	
+	    <Button 
+	        android:id="@+id/btn_estimated_utc1"    
+	    	android:layout_width="wrap_content" 
+	    	android:layout_height="wrap_content"
+	    	android:text="@string/out_t1"
+	    	android:typeface="monospace" 
+	    	android:onClick="showUTC1Dialog" 
+	    	android:enabled = "false"
+	    	android:clickable = "false"/>
+	    
+	</LinearLayout>    
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+	    tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+    	    
+   		 <TextView
+    	    android:id="@+id/lbl_estimated_utc_2"
+			android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
+	        android:text="@string/out_estimated_utc_2" />
+
+	    <TextView
+	        android:id="@+id/txt_estimated_utc2"
+			android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
+	        android:text="@string/out_empty_timer"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:typeface="monospace" />
+   		 
+    	<Button 
+    	android:id="@+id/btn_estimated_utc2"    
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+	    android:text="@string/out_t2"
+	    android:typeface="monospace" 
+    	android:onClick="showUTC2Dialog"
+    	android:enabled = "false"
+    	android:clickable = "false" />
+    
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+    	style="@style/ButtonBar"
+        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_gravity="top"
+            android:clickable="false"
+            android:enabled="false"
+            android:onClick="start"
+            style="@style/ButtonBarButton"
+            android:text="@string/out_start" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_gravity="top"
+            android:clickable="false"
+            android:enabled="false"
+            android:onClick="stop"
+            style="@style/ButtonBarButton"
+            android:text="@string/out_stop" />
+    </LinearLayout>
+    
+    <TextView
+	        android:id="@+id/lbl_countdown_title"
+	    	android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+    		android:paddingTop="30sp"
+    		android:gravity="center_horizontal"
+	        android:text="@string/out_countdown_title" />
+    
+    <TextView
+        android:id="@+id/txt_countdown"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/out_empty_timer"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:paddingBottom="10sp"
+        android:typeface="monospace" />
+
+    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+ 
+	        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+	        android:orientation="vertical"
+	        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+
+	        <TextView
+	        android:id="@+id/lbl_utc1_audited"
+	    	android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+    		android:paddingTop="12sp"
+    		android:gravity="center_horizontal"
+	        android:text="@string/out_utc1_audited" />
+	            
+		    <TextView
+	        android:id="@+id/txt_utc1_audited"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:text="@string/out_empty_timer"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:typeface="monospace" />
+	        	        
+	   </LinearLayout>    
+	            
+       <LinearLayout
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="0.5"
+       android:orientation="vertical"
+       tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+
+	        <TextView
+	        android:id="@+id/lbl_utc2_audited"
+	    	android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+    		android:paddingTop="12sp"
+    		android:gravity="center_horizontal"
+	        android:text="@string/out_utc2_audited" />
+	            
+		    <TextView
+	        android:id="@+id/txt_utc2_audited"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:text="@string/out_empty_timer"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:typeface="monospace" />
+	        	            	        
+	                    
+	        </LinearLayout>            
+            
+        </LinearLayout>
+    
+</LinearLayout>

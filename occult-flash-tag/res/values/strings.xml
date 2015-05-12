@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Occult Flash Tag</string>
+
+    
+    <string name="out_text_flash_measurement">Flash Measurement</string>
+
+    <string name="out_status_bar_ready">Ready</string>
+	<string name="out_empty_timer">--:--:--.---</string>
+    <string name="out_estimated_utc_1">Estimated UTC 1</string>
+    <string name="out_t1">T1</string>
+    <string name="out_estimated_utc_2">Estimated UTC 2</string>    
+    <string name="out_t2">T2</string>
+    <string name="out_start">start</string>
+    <string name="out_stop">stop</string>
+    <string name="out_countdown_title">Countdown to flash</string>
+    <string name="out_utc1_audited">UTC1 Audited</string>
+    <string name="out_utc2_audited">UTC2 Audited</string>
+    <string name="out_flash_not_available">Flash not available</string>
+    <string name="out_successful_flash_measurement">Successful flash measurement</string>
+    <string name="out_milliseconds_symbol">ms.</string>
+	<string name="out_measuring_flash">Measuring flash</string>
+
+    
+    
+</resources>
