@@ -1,5 +1,21 @@
 package br.eti.erickcouto.occultflashtag;
 
+/*
+ * Copyright (C) 2015 Erick Couto
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import java.util.Set;
 
 import android.app.Application;
@@ -8,17 +24,18 @@ public class DataApplication extends Application {
 
 	private Set<Long> checkpoints;
 	private Set<Long> processedCheckpoints;
-	
+
 	private Long ntpTimeFromCurrentCheckpoint;
 	private Long ntpTimeFromStart;
 	private Long systemTimeFromStart;
 	private Long systemTimeFromEnd;
-	
+	private Long systemTimeZoneDiff;
+
 	private Integer currentCheckpointNumber = 0;
-	
+
 	private Long ntpFirstCheckpoint;
 	private Long ntpSecondCheckpoint;
-	
+
 	private Long timeForCheckpoint1;
 	private Long timeForCheckpoint2;
 
@@ -26,11 +43,7 @@ public class DataApplication extends Application {
 
 	private Long timeControlUptimeStart;
 	private Long timeControlCountdown;
-	
-	private Long startAudit;
-	private Long endAudit;
 
-	
 	public Long getTimeForCheckpoint1() {
 		return timeForCheckpoint1;
 	}
@@ -61,22 +74,6 @@ public class DataApplication extends Application {
 
 	public void setCameraDelay(Long cameraDelay) {
 		this.cameraDelay = cameraDelay;
-	}
-
-	public Long getStartAudit() {
-		return startAudit;
-	}
-
-	public void setStartAudit(Long startAudit) {
-		this.startAudit = startAudit;
-	}
-
-	public Long getEndAudit() {
-		return endAudit;
-	}
-
-	public void setEndAudit(Long endAudit) {
-		this.endAudit = endAudit;
 	}
 
 	public Long getTimeControlUptimeStart() {
@@ -159,7 +156,12 @@ public class DataApplication extends Application {
 		this.processedCheckpoints = processedCheckpoints;
 	}
 
-	
-	
-	
+	public Long getSystemTimeZoneDiff() {
+		return systemTimeZoneDiff;
+	}
+
+	public void setSystemTimeZoneDiff(Long systemTimeZoneDiff) {
+		this.systemTimeZoneDiff = systemTimeZoneDiff;
+	}
+
 }
