@@ -88,22 +88,22 @@ public class MeasurementThread extends AsyncTask<Activity, String, Long>  {
     }
 
     protected void onPostExecute(Long result) {
-    	Button btnEstimatedUtc1 = ((Button) main.findViewById(R.id.btn_estimated_utc1));
-    	Button btnEstimatedUtc2 = ((Button) main.findViewById(R.id.btn_estimated_utc2));
-		
+
+    	main.activateControls();
+    	
     	TextView txtStatusBar = ((TextView) main.findViewById(R.id.txt_status_bar));
     	if(erro) txtStatusBar.setText(main.getString(R.string.out_flash_not_available));
 		else txtStatusBar.setText(main.getString(R.string.out_successful_flash_measurement) + " - " + result + main.getString(R.string.out_milliseconds_symbol));
     	
-    	btnEstimatedUtc1.setClickable(true);
-    	btnEstimatedUtc1.setEnabled(true);
-    	btnEstimatedUtc2.setClickable(true);
-    	btnEstimatedUtc2.setEnabled(true);
 		
     	Button btnFlashMeasurement = ((Button) main.findViewById(R.id.btn_flash_measurement));
     	btnFlashMeasurement.setClickable(true);
     	btnFlashMeasurement.setEnabled(true);
 
+    	main.registerFlashMeasurement();
+    	main.hideFlashMeasurement();
+    	main.showBodySelector();
+    	
     }
 
 	

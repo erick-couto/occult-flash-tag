@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.eti.erickcouto.occultflashtag"
-    android:versionCode="1"
-    android:versionName="0.1" >
+    android:versionCode="2"
+    android:versionName="0.2" >
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.INTERNET" />
  	<uses-permission android:name="android.permission.CAMERA"/> 
  	<uses-permission android:name="android.permission.FLASHLIGHT"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+ 	
  	<application
         android:name="br.eti.erickcouto.occultflashtag.DataApplication"
         android:allowBackup="true"
@@ -27,6 +28,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="br.eti.erickcouto.occultflashtag.SettingsActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="br.eti.erickcouto.occultflashtag.OccultFlashTag" />
+        </activity>
+        
     </application>
 
 </manifest>

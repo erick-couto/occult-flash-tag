@@ -26,38 +26,228 @@ import java.util.TimeZone;
 
 import br.eti.erickcouto.occultflashtag.R;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 
 	public static final int FLASH_FPS = 10;
-
+	private static final int TWO_MINUTES = 1000 * 60 * 2;
+	private static final String BREAK_LINE = "\n";
+	
 	private Handler timeControl;
 	public CountDownTimer visualCountdown;
 	private DataApplication appData;
-
+	private SharedPreferences prefs;
+	private LocationManager locationManager;
+	private String locationProvider;
+	private LocationListener locationListener;
+	private Location bestLocation;
+	private String ntpServer;
+	
 	public Set<Long> processedChecks = new HashSet<Long>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.occult_flash_tag);
-
+	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean measured = prefs.getBoolean("measured", false);
+        
+        if(!measured){
+        	hideBodySelector();
+        	showFlashMeasurement();
+        } else {
+        	hideFlashMeasurement();
+        	showBodySelector();
+        	activateControls();
+        }
+        
+        String ntp = prefs.getString("ntp_server", null);
+        if (ntp == null){
+            SharedPreferences.Editor ed = prefs.edit();
+            ed.putString("ntp_server", getText(R.string.out_prefs_ntp_server_default).toString());
+            ed.commit();
+        }
+        
+        ntpServer = prefs.getString("ntp_server", null);
+        
 		appData = (DataApplication) getApplication();
 
+		locationProvider = LocationManager.GPS_PROVIDER;
+
+		configureLocationGPS();
+		locationManager.requestLocationUpdates(locationProvider, 0, 0, locationListener);
+		
+		RadioGroup rg = (RadioGroup) findViewById(R.id.rad_selector);
+	    rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+	            public void onCheckedChanged(RadioGroup group, int checkedId) {
+	                switch(checkedId){
+	                    case R.id.rad_occult:
+	                    	appData.setCurrentEvent("OC");
+	                    break;
+	                    case R.id.rad_eclipse:
+	                        appData.setCurrentEvent("EC");
+	                    break;
+	                    case R.id.rad_transit:
+	                        appData.setCurrentEvent("TR");
+	                    break;
+	                }
+	            }
+	    });
+		
 	}
 
+	private void configureLocationGPS(){
+		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+		locationListener = new LocationListener() {
+		    public void onLocationChanged(Location location) {
+		    	if(isBetterLocation(location, bestLocation)){
+			    	appData.setCurrentAltitude(location.getAltitude());
+			    	appData.setCurrentLatitude(location.getLatitude());
+			    	appData.setCurrentLongitude(location.getLongitude());
+			    	
+					TextView txtLatitude = ((TextView) findViewById(R.id.txt_latitude));
+					txtLatitude.setText(String.valueOf(appData.getCurrentLatitude()));
+
+					TextView txtLongitude = ((TextView) findViewById(R.id.txt_longitude));
+					txtLongitude.setText(String.valueOf(appData.getCurrentLongitude()));
+		    	}
+		    }
+
+		    public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+		    public void onProviderEnabled(String provider) {}
+
+		    public void onProviderDisabled(String provider) {}
+		  };
+
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.occult_flash_tag_menu, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.action_flash:
+	            hideBodySelector();
+	            showFlashMeasurement();
+	            measure(findViewById(R.id.btn_flash_measurement));
+	            return true;
+	        case R.id.action_share:
+	        	if(appData.getCheckpoint1ntp() == null || appData.getCheckpoint2ntp() == null){
+	        		Context context = getApplicationContext();
+	        		CharSequence text = getText(R.string.out_share_error_message);
+	        		int duration = Toast.LENGTH_LONG;
+	        		Toast toast = Toast.makeText(context, text, duration);
+	        		toast.show();	
+	        	} else {
+	                Intent sendIntent = new Intent();
+	                sendIntent.setAction(Intent.ACTION_SEND);
+	                sendIntent.putExtra(Intent.EXTRA_TEXT, getFormattedResultsForShare());
+	                sendIntent.setType("text/plain");
+	                startActivity(sendIntent);
+	        	}
+	        	
+	        	return true;
+	        case R.id.action_settings:
+	        	startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+	            return true;
+	        case R.id.action_about:
+	        	showAbout();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+
+	private String getFormattedResultsForShare(){
+		StringBuffer sb = new StringBuffer(); 
+		sb.append("Occult Flash Tag");
+		sb.append(BREAK_LINE); 
+		sb.append("==================================");
+		sb.append(BREAK_LINE); 
+
+		sb.append(getText(R.string.out_date) + ": ");
+		sb.append(formatDateByMilliseconds(appData.getCheckpoint1ntp()));
+		sb.append(BREAK_LINE); 
+		sb.append(BREAK_LINE); 
+		
+		sb.append(appData.getCheckpointBody1());
+
+		String event = appData.getCheckpointEvent();
+		if(event == null) event = "OC";
+		
+		if("OC".equals(event)){
+			sb.append(" (" + getText(R.string.out_occult) + ") ");
+		}
+		else if("EC".equals(event)){
+			sb.append(" (" + getText(R.string.out_eclipse) + ") ");
+		}
+		else if("TR".equals(event)){
+			sb.append(" (" + getText(R.string.out_transit) + ") ");
+		}
+
+		sb.append(appData.getCheckpointBody2());
+		sb.append(BREAK_LINE); 
+		
+		sb.append(getText(R.string.out_estimated_utc_1) + ": ");
+		sb.append(formatTimeByMilliseconds(appData.getCheckpoint1ntp()));
+		sb.append(BREAK_LINE); 
+
+		sb.append(getText(R.string.out_estimated_utc_2) + ": ");
+		sb.append(formatTimeByMilliseconds(appData.getCheckpoint2ntp()));
+		sb.append(BREAK_LINE); 
+
+		sb.append(getText(R.string.out_altitude) + ": ");
+		sb.append(appData.getCheckpointAltitude());
+		sb.append(BREAK_LINE); 
+
+		sb.append(getText(R.string.out_latitude) + ": ");
+		sb.append(appData.getCheckpointLatitude());
+		sb.append(BREAK_LINE); 
+
+		sb.append(getText(R.string.out_longitude) + ": ");
+		sb.append(appData.getCheckpointLongitude());
+		sb.append(BREAK_LINE); 
+
+		return sb.toString();
+		
+	}
+	
 	public void showUTC1Dialog(View v) {
 		DialogFragment newFragment = new TimePickerFragment(true);
 		newFragment.show(this.getFragmentManager(), "UTC1");
@@ -74,14 +264,11 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 
 		Button BtnStart = ((Button) findViewById(R.id.btn_start));
 		Button BtnStop = ((Button) findViewById(R.id.btn_stop));
-		Button BtnFlashMeasurement = ((Button) findViewById(R.id.btn_flash_measurement));
 
 		BtnStart.setClickable(false);
 		BtnStart.setEnabled(false);
 		BtnStop.setClickable(true);
 		BtnStop.setEnabled(true);
-		BtnFlashMeasurement.setClickable(false);
-		BtnFlashMeasurement.setEnabled(false);
 
 		TextView txtUtc1Audited = ((TextView) findViewById(R.id.txt_utc1_audited));
 		txtUtc1Audited.setText(getText(R.string.out_empty_timer));
@@ -89,10 +276,78 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 		TextView txtUtc2Audited = ((TextView) findViewById(R.id.txt_utc2_audited));
 		txtUtc2Audited.setText(getText(R.string.out_empty_timer));
 
-		new UTCTime(this).execute();
+		appData.setCheckpoint1ntp(null);
+		appData.setCheckpoint2ntp(null);
+		
+		new UTCTime(this, ntpServer).execute();
 
 	}
 
+	public void showFlashMeasurement(){
+		Button btnFlashMeasurement = ((Button) findViewById(R.id.btn_flash_measurement));
+		btnFlashMeasurement.setVisibility(View.VISIBLE);
+		btnFlashMeasurement.setClickable(true);
+		btnFlashMeasurement.setEnabled(true);
+		
+		TextView tvStatusBar = ((TextView) findViewById(R.id.txt_status_bar));
+		tvStatusBar.setVisibility(View.VISIBLE);
+		tvStatusBar.setClickable(true);
+		tvStatusBar.setEnabled(true);
+	}
+
+	public void hideFlashMeasurement(){
+		Button btnFlashMeasurement = ((Button) findViewById(R.id.btn_flash_measurement));
+		btnFlashMeasurement.setVisibility(View.GONE);
+		btnFlashMeasurement.setClickable(false);
+		btnFlashMeasurement.setEnabled(false);
+		
+		TextView tvStatusBar = ((TextView) findViewById(R.id.txt_status_bar));
+		tvStatusBar.setVisibility(View.GONE);
+		tvStatusBar.setClickable(false);
+		tvStatusBar.setEnabled(false);
+	}
+
+	public void activateControls(){
+    	Button btnEstimatedUtc1 = ((Button) findViewById(R.id.btn_estimated_utc1));
+    	Button btnEstimatedUtc2 = ((Button) findViewById(R.id.btn_estimated_utc2));
+    	btnEstimatedUtc1.setClickable(true);
+    	btnEstimatedUtc1.setEnabled(true);
+    	btnEstimatedUtc2.setClickable(true);
+    	btnEstimatedUtc2.setEnabled(true);
+	}
+	
+	public void showBodySelector(){
+		LinearLayout layBody = ((LinearLayout) findViewById(R.id.lay_body));
+		layBody.setVisibility(View.VISIBLE);
+		layBody.setClickable(true);
+		layBody.setEnabled(true);
+
+		RadioGroup radSelector = ((RadioGroup) findViewById(R.id.rad_selector));
+		radSelector.setVisibility(View.VISIBLE);
+		radSelector.setClickable(true);
+		radSelector.setEnabled(true);
+	}
+
+	public void hideBodySelector(){
+		LinearLayout layBody = ((LinearLayout) findViewById(R.id.lay_body));
+		layBody.setVisibility(View.GONE);
+		layBody.setClickable(false);
+		layBody.setEnabled(false);
+
+		RadioGroup radSelector = ((RadioGroup) findViewById(R.id.rad_selector));
+		radSelector.setVisibility(View.GONE);
+		radSelector.setClickable(false);
+		radSelector.setEnabled(false);
+	}
+
+	public void registerFlashMeasurement(){
+        SharedPreferences.Editor ed = prefs.edit();
+        ed.putBoolean("measured", true);
+        ed.commit();
+	}
+	
+
+	
 	public void measure(View v) {
 		Button BtnFlashMeasurement = ((Button) findViewById(R.id.btn_flash_measurement));
 		BtnFlashMeasurement.setClickable(false);
@@ -135,7 +390,7 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 		appData.setSystemTimeFromEnd(null);
 		appData.setTimeControlUptimeStart(null);
 		appData.setTimeControlCountdown(null);
-
+		
 		if (full) {
 			TextView txtCountdown = ((TextView) findViewById(R.id.txt_countdown));
 			txtCountdown.setText(getString(R.string.out_empty_timer));
@@ -143,6 +398,15 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 			txtUtc1Audited.setText(getString(R.string.out_empty_timer));
 			TextView txtUtc2Audited = ((TextView) findViewById(R.id.txt_utc2_audited));
 			txtUtc2Audited.setText(getString(R.string.out_empty_timer));
+			
+			appData.setCheckpointBody1(null);
+			appData.setCheckpointBody2(null);
+			appData.setCheckpointEvent(null);
+			appData.setCheckpointAltitude(null);		
+			appData.setCheckpointLatitude(null);
+			appData.setCheckpointLongitude(null);
+			appData.setCheckpoint1ntp(null);
+			appData.setCheckpoint2ntp(null);
 		}
 
 	}
@@ -261,6 +525,20 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 							txtUtc1Audited
 									.setText(formatTimeByMilliseconds(endNtp));
 							appData.setNtpFirstCheckpoint(endNtp);
+							
+							//Update checkpoint 1 data
+							TextView txtBody1 = ((TextView) findViewById(R.id.imp_body_1));
+							appData.setCheckpointBody1(txtBody1.getText().toString());
+
+							TextView txtBody2 = ((TextView) findViewById(R.id.imp_body_2));
+							appData.setCheckpointBody2(txtBody2.getText().toString());
+							
+							appData.setCheckpointEvent(appData.getCurrentEvent());
+							appData.setCheckpointAltitude(appData.getCurrentAltitude());
+							appData.setCheckpointLatitude(appData.getCurrentLatitude());
+							appData.setCheckpointLongitude(appData.getCurrentLongitude());
+							appData.setCheckpoint1ntp(endNtp);
+							
 						} else if (appData.getCurrentCheckpointNumber().equals(
 								2)) {
 							TextView txtUtc2Audited = ((TextView) findViewById(R.id.txt_utc2_audited));
@@ -271,6 +549,22 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 							txtCountdown
 									.setText(getString(R.string.out_finished_upper));
 							clean(false);
+							
+							//Update checkpoint 2 data
+							if(appData.getCheckpointBody1() == null){
+								TextView txtBody1 = ((TextView) findViewById(R.id.imp_body_1));
+								appData.setCheckpointBody1(txtBody1.getText().toString());
+							}
+							
+							if(appData.getCheckpointBody2() == null){
+								TextView txtBody2 = ((TextView) findViewById(R.id.imp_body_2));
+								appData.setCheckpointBody1(txtBody2.getText().toString());
+							}
+							
+							appData.setCheckpointAltitude(appData.getCurrentAltitude());
+							appData.setCheckpointLatitude(appData.getCurrentLatitude());
+							appData.setCheckpointLongitude(appData.getCurrentLongitude());
+							appData.setCheckpoint2ntp(endNtp);
 						}
 
 						if (appData.getCurrentCheckpointNumber().equals(1)) {
@@ -324,6 +618,13 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 		return sdf.format(new Date(time));
 	}
 
+	public String formatDateByMilliseconds(Long time) {
+		time -= appData.getSystemTimeZoneDiff();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(new Date(time));
+	}
+
+	
 	private Set<Long> generateCheckpoints(Date currentDate) {
 
 		Set<Long> checkpoints = new HashSet<Long>();
@@ -388,4 +689,72 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 		this.appData = appData;
 	}
 
+	/** Determines whether one Location reading is better than the current Location fix
+	  * @param location  The new Location that you want to evaluate
+	  * @param currentBestLocation  The current Location fix, to which you want to compare the new one
+	  */
+	protected boolean isBetterLocation(Location location, Location currentBestLocation) {
+	    if (currentBestLocation == null) {
+	        // A new location is always better than no location
+	        return true;
+	    }
+
+	    // Check whether the new location fix is newer or older
+	    long timeDelta = location.getTime() - currentBestLocation.getTime();
+	    boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
+	    boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
+	    boolean isNewer = timeDelta > 0;
+
+	    // If it's been more than two minutes since the current location, use the new location
+	    // because the user has likely moved
+	    if (isSignificantlyNewer) {
+	        return true;
+	    // If the new location is more than two minutes older, it must be worse
+	    } else if (isSignificantlyOlder) {
+	        return false;
+	    }
+
+	    // Check whether the new location fix is more or less accurate
+	    int accuracyDelta = (int) (location.getAccuracy() - currentBestLocation.getAccuracy());
+	    boolean isLessAccurate = accuracyDelta > 0;
+	    boolean isMoreAccurate = accuracyDelta < 0;
+	    boolean isSignificantlyLessAccurate = accuracyDelta > 200;
+
+	    // Check if the old and new location are from the same provider
+	    boolean isFromSameProvider = isSameProvider(location.getProvider(),
+	            currentBestLocation.getProvider());
+
+	    // Determine location quality using a combination of timeliness and accuracy
+	    if (isMoreAccurate) {
+	        return true;
+	    } else if (isNewer && !isLessAccurate) {
+	        return true;
+	    } else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider) {
+	        return true;
+	    }
+	    return false;
+	}
+
+	/** Checks whether two providers are the same */
+	private boolean isSameProvider(String provider1, String provider2) {
+	    if (provider1 == null) {
+	      return provider2 == null;
+	    }
+	    return provider1.equals(provider2);
+	}
+
+    protected void showAbout() {
+        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
+        TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+        int defaultColor = textView.getTextColors().getDefaultColor();
+        textView.setTextColor(defaultColor);
+ 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setTitle(R.string.app_name);
+        builder.setView(messageView);
+        builder.create();
+        builder.show();
+    }
+	
 }

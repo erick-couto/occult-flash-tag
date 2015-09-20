@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="ntp_server"
+        android:title="@string/out_prefs_ntp_server"
+        android:dialogTitle="@string/out_prefs_ntp_server"
+        android:summary="%s"
+        android:entries="@array/ntp_servers"
+        android:entryValues="@array/ntp_servers_values"
+        android:defaultValue="@string/out_prefs_ntp_server_default" />
+</PreferenceScreen>

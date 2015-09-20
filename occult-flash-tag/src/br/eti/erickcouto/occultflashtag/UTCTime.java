@@ -22,10 +22,12 @@ public class UTCTime extends AsyncTask<Void, Void, Boolean> {
 
 	private final SntpClient client = new SntpClient();
 	private OnNtpTimeReceived listener;
+	private ENtpServer ntpServer;
 	private long now;
 
-	public UTCTime(OnNtpTimeReceived listener) {
+	public UTCTime(OnNtpTimeReceived listener, String serverCode) {
 		this.listener = listener;
+		ntpServer = ENtpServer.getServerByCode(serverCode);
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class UTCTime extends AsyncTask<Void, Void, Boolean> {
 		int x = 0;
 
 		while (x < 4) {
-			if (client.requestTime("pool.ntp.br", 6000)) {
+			if (client.requestTime(ntpServer.getServer(), 6000)) {
 				now = client.getNtpTime();
 				break;
 			} else {
@@ -51,4 +53,5 @@ public class UTCTime extends AsyncTask<Void, Void, Boolean> {
 				client.getNtpTimeReference());
 	}
 
+	
 }

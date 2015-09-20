@@ -17,6 +17,9 @@ package br.eti.erickcouto.occultflashtag;
  */
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import br.eti.erickcouto.occultflashtag.R;
 import android.app.Dialog;
@@ -39,7 +42,7 @@ public class TimePickerFragment extends DialogFragment implements
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-		final Calendar c = Calendar.getInstance();
+		final Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 		int hour = c.get(Calendar.HOUR_OF_DAY);
 		int minute = c.get(Calendar.MINUTE);
 
