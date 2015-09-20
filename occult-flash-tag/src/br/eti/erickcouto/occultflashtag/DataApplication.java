@@ -25,6 +25,16 @@ public class DataApplication extends Application {
 	private Set<Long> checkpoints;
 	private Set<Long> processedCheckpoints;
 
+	private String currentBody1;
+	private String currentBody2;
+	private String currentEvent;
+	private String checkpointBody1;
+	private String checkpointBody2;
+	private String checkpointEvent;
+	private Long checkpoint1ntp;
+	private Long checkpoint2ntp;
+
+	
 	private Long ntpTimeFromCurrentCheckpoint;
 	private Long ntpTimeFromStart;
 	private Long systemTimeFromStart;
@@ -44,6 +54,14 @@ public class DataApplication extends Application {
 	private Long timeControlUptimeStart;
 	private Long timeControlCountdown;
 
+	private Double currentAltitude;
+	private Double currentLatitude;
+	private Double currentLongitude;
+	private Double checkpointAltitude;
+	private Double checkpointLatitude;
+	private Double checkpointLongitude;
+
+	
 	public Long getTimeForCheckpoint1() {
 		return timeForCheckpoint1;
 	}
@@ -163,5 +181,119 @@ public class DataApplication extends Application {
 	public void setSystemTimeZoneDiff(Long systemTimeZoneDiff) {
 		this.systemTimeZoneDiff = systemTimeZoneDiff;
 	}
+
+	public Double getCurrentAltitude() {
+		return currentAltitude;
+	}
+
+	public void setCurrentAltitude(Double currentAltitude) {
+		this.currentAltitude = currentAltitude;
+	}
+
+	public Double getCurrentLatitude() {
+		return currentLatitude;
+	}
+
+	public void setCurrentLatitude(Double currentLatitude) {
+		this.currentLatitude = currentLatitude;
+	}
+
+	public Double getCurrentLongitude() {
+		return currentLongitude;
+	}
+
+	public void setCurrentLongitude(Double currentLongitude) {
+		this.currentLongitude = currentLongitude;
+	}
+
+	public Double getCheckpointAltitude() {
+		return checkpointAltitude;
+	}
+
+	public void setCheckpointAltitude(Double checkpointAltitude) {
+		this.checkpointAltitude = checkpointAltitude;
+	}
+
+	public Double getCheckpointLatitude() {
+		return checkpointLatitude;
+	}
+
+	public void setCheckpointLatitude(Double checkpointLatitude) {
+		this.checkpointLatitude = checkpointLatitude;
+	}
+
+	public Double getCheckpointLongitude() {
+		return checkpointLongitude;
+	}
+
+	public void setCheckpointLongitude(Double checkpointLongitude) {
+		this.checkpointLongitude = checkpointLongitude;
+	}
+
+	public String getCurrentBody1() {
+		return currentBody1;
+	}
+
+	public void setCurrentBody1(String currentBody1) {
+		this.currentBody1 = currentBody1;
+	}
+
+	public String getCurrentBody2() {
+		return currentBody2;
+	}
+
+	public void setCurrentBody2(String currentBody2) {
+		this.currentBody2 = currentBody2;
+	}
+
+	public String getCurrentEvent() {
+		return currentEvent;
+	}
+
+	public void setCurrentEvent(String currentEvent) {
+		this.currentEvent = currentEvent;
+	}
+
+	public String getCheckpointBody1() {
+		return checkpointBody1;
+	}
+
+	public void setCheckpointBody1(String checkpointBody1) {
+		this.checkpointBody1 = checkpointBody1;
+	}
+
+	public String getCheckpointBody2() {
+		return checkpointBody2;
+	}
+
+	public void setCheckpointBody2(String checkpointBody2) {
+		this.checkpointBody2 = checkpointBody2;
+	}
+
+	public String getCheckpointEvent() {
+		return checkpointEvent;
+	}
+
+	public void setCheckpointEvent(String checkpointEvent) {
+		this.checkpointEvent = checkpointEvent;
+	}
+
+	public Long getCheckpoint1ntp() {
+		return checkpoint1ntp;
+	}
+
+	public void setCheckpoint1ntp(Long checkpoint1ntp) {
+		this.checkpoint1ntp = checkpoint1ntp;
+	}
+
+	public Long getCheckpoint2ntp() {
+		return checkpoint2ntp;
+	}
+
+	public void setCheckpoint2ntp(Long checkpoint2ntp) {
+		this.checkpoint2ntp = checkpoint2ntp;
+	}
+
+	
 
 }

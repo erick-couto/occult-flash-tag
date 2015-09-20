@@ -9,7 +9,61 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
 
-            <Button
+			<LinearLayout
+			android:id="@+id/lay_body"
+	        android:layout_width="match_parent"
+	        android:layout_height="46dp"
+	        android:orientation="horizontal"
+	        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+    
+		    <EditText
+	        android:id="@+id/imp_body_1"
+	        android:maxLines="1"
+	        android:inputType="textNoSuggestions|textImeMultiLine"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.50"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/out_body_1" >
+	        <requestFocus />
+		    </EditText>
+
+		    <EditText
+	        android:id="@+id/imp_body_2"
+	        android:maxLines="1"
+   	        android:inputType="textNoSuggestions|textImeMultiLine"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.50"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/out_body_2">
+		    </EditText>
+			</LinearLayout>    
+			
+			<RadioGroup 
+			android:id="@+id/rad_selector"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:checkedButton="@+id/rad_occult"
+			android:orientation="horizontal">
+			    <RadioButton android:id="@+id/rad_occult"
+		        android:layout_width="0dp"
+       	        android:layout_weight="0.33"
+		        android:layout_height="wrap_content"
+		        android:text="@string/out_occult"/>
+			    <RadioButton android:id="@+id/rad_eclipse"
+		        android:layout_width="0dp"
+       	        android:layout_weight="0.34"
+		        android:layout_height="wrap_content"
+		        android:text="@string/out_eclipse"/>
+			    <RadioButton android:id="@+id/rad_transit"
+		        android:layout_width="0dp"
+       	        android:layout_weight="0.33"
+		        android:layout_height="wrap_content"
+		        android:text="@string/out_transit"/>
+			</RadioGroup>
+						
+			
+			<Button
             android:id="@+id/btn_flash_measurement"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -30,6 +84,10 @@
         	android:paddingBottom="20sp"
 	        android:text="@string/out_status_bar_ready" />
 
+    		
+    		
+    		
+    		
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="46dp"
@@ -216,4 +274,117 @@
             
         </LinearLayout>
     
+        
+        
+        
+        
+        
+        
+        
+        
+     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+ 
+	        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+	        android:orientation="vertical"
+	        tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+
+	        <TextView
+	        android:id="@+id/lbl_latitude"
+	    	android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+    		android:paddingTop="12sp"
+    		android:gravity="center_horizontal"
+	        android:text="@string/out_latitude" />
+	            
+		    <TextView
+	        android:id="@+id/txt_latitude"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:text="@string/out_wait_gps_fix"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:typeface="monospace" />
+	        	        
+	   </LinearLayout>    
+	            
+       <LinearLayout
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="0.5"
+       android:orientation="vertical"
+       tools:context="br.eti.erickcouto.occultflashtag.OccultFlashTag" >
+
+	        <TextView
+	        android:id="@+id/lbl_longitude"
+	    	android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+    		android:paddingTop="12sp"
+    		android:gravity="center_horizontal"
+	        android:text="@string/out_longitude" />
+	            
+		    <TextView
+	        android:id="@+id/txt_longitude"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:text="@string/out_wait_gps_fix"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:typeface="monospace" />
+	        	            	        
+	                    
+	        </LinearLayout>            
+            
+        </LinearLayout>        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 </LinearLayout>

@@ -3,9 +3,16 @@
 
     <string name="app_name">Occult Flash Tag</string>
 
+    <string name="out_body_1">Body 1</string>
+    <string name="out_body_2">Body 2</string>
+    <string name="out_occult">occult</string>
+    <string name="out_eclipse">eclipse</string>
+    <string name="out_transit">transit</string>
     <string name="out_text_flash_measurement">Flash Measurement</string>
+    <string name="out_text_share_results">Share Results</string>
     <string name="out_status_bar_ready">Ready</string>
 	<string name="out_empty_timer">--:--:--.---</string>
+	<string name="out_wait_gps_fix">wait fix</string>
     <string name="out_estimated_utc_1">Estimated UTC 1</string>
     <string name="out_t1">T1</string>
     <string name="out_estimated_utc_2">Estimated UTC 2</string>    
@@ -16,9 +23,22 @@
     <string name="out_countdown_title">Countdown to flash</string>
     <string name="out_utc1_audited">UTC1 Audited</string>
     <string name="out_utc2_audited">UTC2 Audited</string>
+    <string name="out_date">Date</string>
     <string name="out_flash_not_available">Flash not available</string>
     <string name="out_successful_flash_measurement">Successful flash measurement</string>
     <string name="out_milliseconds_symbol">ms.</string>
 	<string name="out_measuring_flash">Measuring flash</string>
+   	<string name="out_settings">Settings</string>
+    <string name="out_altitude">Altitude</string>
+    <string name="out_latitude">Latitude</string>
+    <string name="out_longitude">Longitude</string>
+    <string name="out_share_error_message">Nothing to share! You need complete a full flash session (two flashes) to share the results. Please, start your new session and wait by FINISHED message.</string>
+    <string name="out_prefs_ntp_server">NTP Server</string>
+    <string name="out_prefs_ntp_server_default">ONBR1</string>
     
+    <string-array name="ntp_servers">
+        <item name="ONBR1">BRAZIL - National Observatory</item>
+        <item name="ENDD1">USA - NTP Server</item>
+    </string-array>
+    		
 </resources>
