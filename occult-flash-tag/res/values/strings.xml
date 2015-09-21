@@ -38,6 +38,10 @@
     <string name="out_share_error_message">Nothing to share! You need complete a full flash session (two flashes) to share the results. Please, start your new session and wait by FINISHED message.</string>
     <string name="out_prefs_ntp_server">NTP Server</string>
     <string name="out_prefs_ntp_server_default">USA01</string>
+    <string name="out_prefs_video_format">Video Format</string>
+    <string name="out_prefs_video_format_default">33</string>
+    <string name="out_prefs_integration_rate">Integration Rate</string>
+    <string name="out_prefs_integration_rate_default">1</string>
     
     <string-array name="ntp_servers">
 		<item>ARGENTINA - NTP.ORG</item>
@@ -74,19 +78,39 @@
 		<item>SPA01</item>										        		
 		<item>USA01</item>
     </string-array>
-    
-    
-    <string-array name="listentries">
-<item>List item 1</item>
-<item>List item 2</item>
-<item>List item 3</item>
-<item>List item 4</item>
-</string-array>
-<string-array name="listvalues">
-<item>1</item>
-<item>2</item>
-<item>3</item>
-<item>4</item>
-</string-array>
+
+    <string-array name="video_format">
+		<item>NTSC - 29.97 fps</item>
+		<item>PAL - 25 fps</item>
+    </string-array>
+
+    <string-array name="video_format_values">
+		<item>33</item>
+		<item>40</item>
+    </string-array>
+
+    <string-array name="integration_rate">
+		<item>x1</item>
+		<item>x2</item>
+		<item>x4</item>
+		<item>x8</item>		
+		<item>x16</item>
+		<item>x32</item>
+		<item>x64</item>
+		<item>x128</item>
+		<item>x256</item>
+    </string-array>
+
+    <string-array name="integration_rate_values">
+		<item>1</item>
+		<item>2</item>
+		<item>4</item>
+		<item>8</item>		
+		<item>16</item>
+		<item>32</item>
+		<item>64</item>
+		<item>128</item>
+		<item>256</item>
+    </string-array>
     		
 </resources>

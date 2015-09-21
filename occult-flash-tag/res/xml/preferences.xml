@@ -8,4 +8,21 @@
         android:entries="@array/ntp_servers"
         android:entryValues="@array/ntp_servers_values"
         android:defaultValue="@string/out_prefs_ntp_server_default" />
+    <ListPreference
+        android:key="video_format"
+        android:title="@string/out_prefs_video_format"
+        android:dialogTitle="@string/out_prefs_video_format"
+        android:summary="%s"
+        android:entries="@array/video_format"
+        android:entryValues="@array/video_format_values"
+        android:defaultValue="@string/out_prefs_video_format_default" />
+    <ListPreference
+        android:key="integration_rate"
+        android:title="@string/out_prefs_integration_rate"
+        android:dialogTitle="@string/out_prefs_integration_rate"
+        android:summary="%s"
+        android:entries="@array/integration_rate"
+        android:entryValues="@array/integration_rate_values"
+        android:defaultValue="@string/out_prefs_integration_rate_default" />
+    
 </PreferenceScreen>

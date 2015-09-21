@@ -55,7 +55,7 @@ import android.widget.Toast;
 
 public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 
-	public static final int FLASH_FPS = 10;
+//	public static final int FLASH_FPS = 10;
 	private static final int TWO_MINUTES = 1000 * 60 * 2;
 	private static final String BREAK_LINE = "\n";
 	
@@ -68,6 +68,8 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 	private LocationListener locationListener;
 	private Location bestLocation;
 	private String ntpServer;
+	private int videoFormatMs;
+	private int integrationRate;
 	
 	public Set<Long> processedChecks = new HashSet<Long>();
 
@@ -95,8 +97,23 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
             ed.putString("ntp_server", getText(R.string.out_prefs_ntp_server_default).toString());
             ed.commit();
         }
-        
         ntpServer = prefs.getString("ntp_server", null);
+
+        String videoMs = prefs.getString("video_format", null);
+        if (videoMs == null){
+            SharedPreferences.Editor ed = prefs.edit();
+            ed.putString("video_format", getText(R.string.out_prefs_video_format_default).toString());
+            ed.commit();
+        }
+        videoFormatMs = Integer.valueOf(prefs.getString("video_format", null));
+
+        String intRate = prefs.getString("integration_rate", null);
+        if (intRate == null){
+            SharedPreferences.Editor ed = prefs.edit();
+            ed.putString("integration_rate", getText(R.string.out_prefs_integration_rate_default).toString());
+            ed.commit();
+        }
+        integrationRate = Integer.valueOf(prefs.getString("integration_rate", null));
         
 		appData = (DataApplication) getApplication();
 
@@ -441,7 +458,7 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 	public CountDownTimer createVisualCountdown(Long checkpointTime,
 			Long currentTime) {
 		visualCountdown = new CountDownTimer((checkpointTime - currentTime),
-				1000 / FLASH_FPS) {
+				(1000 / 25) ) {
 			TextView txtCountdown = ((TextView) findViewById(R.id.txt_countdown));
 
 			public void onTick(long millisUntilFinished) {
@@ -504,7 +521,7 @@ public class OccultFlashTag extends Activity implements OnNtpTimeReceived {
 						camera.startPreview();
 						appData.setSystemTimeFromEnd(SystemClock.uptimeMillis());
 						nextStart = SystemClock.uptimeMillis();
-						wait(1000 / 25);
+						wait( videoFormatMs * integrationRate );
 						camera.stopPreview();
 						camera.release();
 
