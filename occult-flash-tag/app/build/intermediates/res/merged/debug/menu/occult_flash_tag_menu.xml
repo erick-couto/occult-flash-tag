@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/action_share"
+          android:icon="@android:drawable/ic_menu_share"
+          android:title="@string/out_text_share_results"
+          android:showAsAction="ifRoom" />
+    
+    <item android:id="@+id/action_flash"
+          android:icon="@drawable/ic_action_android_flash"
+          android:title="@string/out_text_flash_measurement"
+          android:showAsAction="ifRoom" />
+    
+    <item android:id="@+id/action_settings"
+          android:title="@string/out_settings"
+          android:showAsAction="never" />
+
+    <item android:id="@+id/action_about"
+          android:title="@string/out_about"
+          android:showAsAction="never" />
+    
+</menu>

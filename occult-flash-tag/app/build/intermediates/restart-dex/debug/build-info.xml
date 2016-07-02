@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="23"
+    density="420dpi"
+    format="7"
+    timestamp="56665012075691"
+    token="7861718987373326015" >
+
+    <task
+        name="javac"
+        duration="8339" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="406" />
+    <task
+        name="verifier"
+        duration="99" />
+
+    <artifact
+        location="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="56665012075691" >
+        <artifact
+            location="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="22.2.1$Generated" generated="true"><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\res"/></dataSet><dataSet config="main$Generated" generated="true"><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res"/><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\generated\res\rs\debug"/><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\debug\res"/></dataSet><dataSet config="22.2.1" from-dependency="true" generated-set="22.2.1$Generated"><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\res"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res"><file name="ic_launcher" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable\ic_launcher.png" qualifiers="" type="drawable"/><file name="ic_action_android_flash" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-hdpi\ic_action_android_flash.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_action_android_flash" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-mdpi\ic_action_android_flash.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_action_android_flash" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-xhdpi\ic_action_android_flash.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_action_android_flash" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-xxhdpi\ic_action_android_flash.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-xxhdpi\ic_launcher.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="ic_action_android_flash" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\drawable-xxxhdpi\ic_action_android_flash.png" qualifiers="xxxhdpi-v4" type="drawable"/><file name="about" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\layout\about.xml" qualifiers="" type="layout"/><file name="occult_flash_tag" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\layout\occult_flash_tag.xml" qualifiers="" type="layout"/><file name="occult_flash_tag_menu" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\menu\occult_flash_tag_menu.xml" qualifiers="" type="menu"/><file path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\values\dimens.xml" qualifiers=""><dimen name="activity_horizontal_margin">16dp</dimen><dimen name="activity_vertical_margin">16dp</dimen></file><file path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\values\strings.xml" qualifiers=""><string name="out_t1">T1</string><string name="out_t2">T2</string><string name="out_settings">Settings</string><string name="out_countdown_title">Countdown to flash</string><string-array name="video_format">
+		<item>NTSC - 29.97 fps</item>
+		<item>PAL - 25 fps</item>
+    </string-array><string name="out_longitude">Longitude</string><string name="app_credits">Developed by Erick Couto under Apache 2.0 License. Full source code available on https://github.com/erick-couto/occult-flash-tag</string><string name="out_prefs_ntp_server_default">USA01</string><string name="out_text_share_results">Share Results</string><string name="out_transit">transit</string><string name="out_milliseconds_symbol">ms.</string><string name="app_use">Please, tell to us if you have used Occult Flash Tag on your videos.</string><string name="out_prefs_integration_rate">Integration Rate</string><string name="out_prefs_video_format_default">33</string><string name="app_description">Use phone\'s flash to mark the first and the last frame of a video with high accuracy (milliseconds)</string><string name="out_altitude">Altitude</string><string name="out_estimated_utc_2">Estimated UTC 2</string><string name="out_eclipse">eclipse</string><string name="out_estimated_utc_1">Estimated UTC 1</string><string name="out_date">Date</string><string name="out_status_bar_ready">Ready</string><string name="out_prefs_ntp_server">NTP Server</string><string-array name="ntp_servers">
+		<item>ARGENTINA - NTP.ORG</item>
+		<item>AUSTRALIA - NTP.ORG</item>
+		<item>BRAZIL - NTP.BR</item>
+		<item>CANADA - NTP.ORG</item>
+		<item>CHILE - NTP.ORG</item>
+		<item>CHINA - NTP.ORG</item>
+		<item>FRANCE - NTP.ORG</item>
+        <item>GERMANY - NTP.ORG</item>
+		<item>INDIA - NTP.ORG</item>
+		<item>ITALY - NTP.ORG</item>
+		<item>JAPAN - NTP.ORG</item>
+		<item>MEXICO - NTP.ORG</item>
+		<item>SOUTH AFRICA - NTP.ORG</item>
+		<item>SPAIN - NTP.ORG</item>										        		
+		<item>USA - NTP.ORG</item>
+    </string-array><string name="out_finished_upper">FINISHED</string><string-array name="video_format_values">
+		<item>33</item>
+		<item>40</item>
+    </string-array><string name="out_prefs_integration_rate_default">1</string><string name="out_wait_gps_fix">wait fix</string><string name="out_about">About</string><string-array name="integration_rate">
+		<item>x1</item>
+		<item>x2</item>
+		<item>x4</item>
+		<item>x8</item>		
+		<item>x16</item>
+		<item>x32</item>
+		<item>x64</item>
+		<item>x128</item>
+		<item>x256</item>
+    </string-array><string name="out_utc1_audited">UTC1 Audited</string><string name="out_prefs_video_format">Video Format</string><string name="out_occult">occult</string><string-array name="integration_rate_values">
+		<item>1</item>
+		<item>2</item>
+		<item>4</item>
+		<item>8</item>		
+		<item>16</item>
+		<item>32</item>
+		<item>64</item>
+		<item>128</item>
+		<item>256</item>
+    </string-array><string name="out_stop">stop</string><string name="out_measuring_flash">Measuring flash</string><string name="out_body_1">Body 1</string><string name="out_share_error_message">Nothing to share! You need complete a full flash session (two flashes) to share the results. Please, start your new session and wait by FINISHED message.</string><string name="out_flash_not_available">Flash not available</string><string name="out_body_2">Body 2</string><string name="out_start">start</string><string name="app_name">Occult Flash Tag</string><string name="out_empty_timer">--:--:--.---</string><string name="out_successful_flash_measurement">Successful flash measurement</string><string name="out_utc2_audited">UTC2 Audited</string><string name="out_text_flash_measurement">Flash Measurement</string><string-array name="ntp_servers_values">
+		<item>ARG01</item>
+		<item>AUS01</item>
+		<item>ONBR1</item>
+		<item>CAN01</item>
+		<item>CHI01</item>
+		<item>CHN01</item>
+		<item>FRA01</item>
+        <item>GER01</item>
+		<item>IND01</item>
+		<item>ITA01</item>
+		<item>JAP01</item>
+		<item>MEX01</item>
+		<item>AFR01</item>
+		<item>SPA01</item>										        		
+		<item>USA01</item>
+    </string-array><string name="out_latitude">Latitude</string></file><file path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\values\styles.xml" qualifiers=""><style name="ButtonBar" parent="@android:style/ButtonBar"/><style name="ButtonBarButton"/><style name="AppTheme" parent="AppBaseTheme"/></file><file path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\values-v11\styles.xml" qualifiers="v11"><style name="ButtonBar" parent="@android:style/Holo.Light.ButtonBar.AlertDialog"/><style name="ButtonBarButton" parent="@android:style/Widget.Holo.Button.Borderless">
+    	<item name="android:textColor">@android:color/primary_text_light</item>
+	</style><style name="AppBaseTheme" parent="android:Theme.Holo.Light"/></file><file name="preferences" path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\main\res\xml\preferences.xml" qualifiers="" type="xml"/></source><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\generated\res\rs\debug"/><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="C:\Users\Erick\StudioProjects\occult-flash-tag\app\src\debug\res"/></dataSet><mergedItems/></merger>

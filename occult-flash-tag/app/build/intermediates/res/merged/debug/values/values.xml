@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="integration_rate">
+		<item>x1</item>
+		<item>x2</item>
+		<item>x4</item>
+		<item>x8</item>		
+		<item>x16</item>
+		<item>x32</item>
+		<item>x64</item>
+		<item>x128</item>
+		<item>x256</item>
+    </string-array>
+    <string-array name="integration_rate_values">
+		<item>1</item>
+		<item>2</item>
+		<item>4</item>
+		<item>8</item>		
+		<item>16</item>
+		<item>32</item>
+		<item>64</item>
+		<item>128</item>
+		<item>256</item>
+    </string-array>
+    <string-array name="ntp_servers">
+		<item>ARGENTINA - NTP.ORG</item>
+		<item>AUSTRALIA - NTP.ORG</item>
+		<item>BRAZIL - NTP.BR</item>
+		<item>CANADA - NTP.ORG</item>
+		<item>CHILE - NTP.ORG</item>
+		<item>CHINA - NTP.ORG</item>
+		<item>FRANCE - NTP.ORG</item>
+        <item>GERMANY - NTP.ORG</item>
+		<item>INDIA - NTP.ORG</item>
+		<item>ITALY - NTP.ORG</item>
+		<item>JAPAN - NTP.ORG</item>
+		<item>MEXICO - NTP.ORG</item>
+		<item>SOUTH AFRICA - NTP.ORG</item>
+		<item>SPAIN - NTP.ORG</item>										        		
+		<item>USA - NTP.ORG</item>
+    </string-array>
+    <string-array name="ntp_servers_values">
+		<item>ARG01</item>
+		<item>AUS01</item>
+		<item>ONBR1</item>
+		<item>CAN01</item>
+		<item>CHI01</item>
+		<item>CHN01</item>
+		<item>FRA01</item>
+        <item>GER01</item>
+		<item>IND01</item>
+		<item>ITA01</item>
+		<item>JAP01</item>
+		<item>MEX01</item>
+		<item>AFR01</item>
+		<item>SPA01</item>										        		
+		<item>USA01</item>
+    </string-array>
+    <string-array name="video_format">
+		<item>NTSC - 29.97 fps</item>
+		<item>PAL - 25 fps</item>
+    </string-array>
+    <string-array name="video_format_values">
+		<item>33</item>
+		<item>40</item>
+    </string-array>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="app_credits">Developed by Erick Couto under Apache 2.0 License. Full source code available on https://github.com/erick-couto/occult-flash-tag</string>
+    <string name="app_description">Use phone\'s flash to mark the first and the last frame of a video with high accuracy (milliseconds)</string>
+    <string name="app_name">Occult Flash Tag</string>
+    <string name="app_use">Please, tell to us if you have used Occult Flash Tag on your videos.</string>
+    <string name="out_about">About</string>
+    <string name="out_altitude">Altitude</string>
+    <string name="out_body_1">Body 1</string>
+    <string name="out_body_2">Body 2</string>
+    <string name="out_countdown_title">Countdown to flash</string>
+    <string name="out_date">Date</string>
+    <string name="out_eclipse">eclipse</string>
+    <string name="out_empty_timer">--:--:--.---</string>
+    <string name="out_estimated_utc_1">Estimated UTC 1</string>
+    <string name="out_estimated_utc_2">Estimated UTC 2</string>
+    <string name="out_finished_upper">FINISHED</string>
+    <string name="out_flash_not_available">Flash not available</string>
+    <string name="out_latitude">Latitude</string>
+    <string name="out_longitude">Longitude</string>
+    <string name="out_measuring_flash">Measuring flash</string>
+    <string name="out_milliseconds_symbol">ms.</string>
+    <string name="out_occult">occult</string>
+    <string name="out_prefs_integration_rate">Integration Rate</string>
+    <string name="out_prefs_integration_rate_default">1</string>
+    <string name="out_prefs_ntp_server">NTP Server</string>
+    <string name="out_prefs_ntp_server_default">USA01</string>
+    <string name="out_prefs_video_format">Video Format</string>
+    <string name="out_prefs_video_format_default">33</string>
+    <string name="out_settings">Settings</string>
+    <string name="out_share_error_message">Nothing to share! You need complete a full flash session (two flashes) to share the results. Please, start your new session and wait by FINISHED message.</string>
+    <string name="out_start">start</string>
+    <string name="out_status_bar_ready">Ready</string>
+    <string name="out_stop">stop</string>
+    <string name="out_successful_flash_measurement">Successful flash measurement</string>
+    <string name="out_t1">T1</string>
+    <string name="out_t2">T2</string>
+    <string name="out_text_flash_measurement">Flash Measurement</string>
+    <string name="out_text_share_results">Share Results</string>
+    <string name="out_transit">transit</string>
+    <string name="out_utc1_audited">UTC1 Audited</string>
+    <string name="out_utc2_audited">UTC2 Audited</string>
+    <string name="out_wait_gps_fix">wait fix</string>
+    <style name="AppTheme" parent="AppBaseTheme"/>
+    <style name="ButtonBar" parent="@android:style/ButtonBar"/>
+    <style name="ButtonBarButton"/>
+</resources>
