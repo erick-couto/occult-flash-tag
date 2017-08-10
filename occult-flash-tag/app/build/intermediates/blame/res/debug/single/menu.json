@@ -1,6 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\build\\intermediates\\res\\merged\\debug\\menu\\occult_flash_tag_menu.xml",
-        "source": "C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\src\\main\\res\\menu\\occult_flash_tag_menu.xml"
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/menu/activity_event_menu.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/menu/activity_event_menu.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/menu/occult_flash_tag_menu.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/menu/occult_flash_tag_menu.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/menu/event_detail_menu.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/menu/event_detail_menu.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\build\\intermediates\\res\\merged\\debug\\menu\\occult_flash_tag_menu.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\src\\main\\res\\menu\\occult_flash_tag_menu.xml"
     }
 ]

@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v18/values-v18.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 48,
+                    "endOffset": 99
+                },
+                "from": {
+                    "file": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/values-v18/values-v18.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 48,
+                        "endOffset": 99
+                    }
+                }
+            }
+        ]
+    }
+]

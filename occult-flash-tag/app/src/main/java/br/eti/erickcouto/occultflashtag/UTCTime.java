@@ -23,11 +23,13 @@ public class UTCTime extends AsyncTask<Void, Void, Boolean> {
 	private final SntpClient client = new SntpClient();
 	private OnNtpTimeReceived listener;
 	private ENtpServer ntpServer;
+	private Event event;
 	private long now;
 
-	public UTCTime(OnNtpTimeReceived listener, String serverCode) {
+	public UTCTime(OnNtpTimeReceived listener, String serverCode, Event event) {
 		this.listener = listener;
 		ntpServer = ENtpServer.getServerByCode(serverCode);
+		this.event = event;
 	}
 
 	@Override

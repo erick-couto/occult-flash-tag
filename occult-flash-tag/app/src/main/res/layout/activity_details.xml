@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    >
+
+    <TextView
+        android:id="@+id/details_body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="details_body1"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="@color/red"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:id="@+id/details_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00/00/0000 00:00:00"
+        android:textSize="16dp"
+        android:textColor="@color/red"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/details_body1"
+        />
+
+    <TextView
+        android:id="@+id/details_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="status"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:typeface="monospace"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/details_datetime"
+        />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/details_status"
+        android:id="@+id/tableLayout">
+
+    </TableLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_below="@+id/tableLayout"
+        android:id="@+id/tableGps">
+
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title_table_latitude"
+                android:text="Latitude"
+                android:gravity="center"
+                android:layout_margin="4sp"
+                android:background="@drawable/rounded_corner"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title_table_longitude"
+                android:text="Longitude"
+                android:background="@drawable/rounded_corner"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_margin="4sp"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title_table_altitude"
+                android:text="Altitude"
+                android:gravity="center"
+                android:background="@drawable/rounded_corner"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_margin="4sp"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/table_latitude_value"
+                android:text="Latitude"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:typeface="monospace"
+                android:layout_weight="1"
+                 />
+
+            <TextView
+                android:id="@+id/table_longitude_value"
+                android:text="Longitude"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:typeface="monospace"
+                android:layout_weight="1"
+                 />
+
+            <TextView
+                android:id="@+id/table_altitude_value"
+                android:text="Altitude"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:typeface="monospace"
+                android:layout_weight="1"
+                 />
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+
+</RelativeLayout>

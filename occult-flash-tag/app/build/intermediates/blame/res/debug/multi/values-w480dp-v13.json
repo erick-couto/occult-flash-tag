@@ -1,0 +1,88 @@
+[
+    {
+        "outputFile": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/values-w480dp-v13/values-w480dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 61,
+                    "endOffset": 112
+                },
+                "from": {
+                    "file": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/values-w480dp-v13/values-w480dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 61,
+                        "endOffset": 112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 117,
+                    "endColumn": 71,
+                    "endOffset": 184
+                },
+                "from": {
+                    "file": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/values-w480dp-v13/values-w480dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 117,
+                        "endColumn": 71,
+                        "endOffset": 184
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w480dp-v13/values-w480dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 61,
+                    "endOffset": 112
+                },
+                "from": {
+                    "file": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/values-w480dp-v13/values-w480dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 61,
+                        "endOffset": 112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 117,
+                    "endColumn": 71,
+                    "endOffset": 184
+                },
+                "from": {
+                    "file": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/values-w480dp-v13/values-w480dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 117,
+                        "endColumn": 71,
+                        "endOffset": 184
+                    }
+                }
+            }
+        ]
+    }
+]

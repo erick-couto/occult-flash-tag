@@ -1,7 +1,10 @@
 <resources>
 
-    <style name="AppTheme" parent="AppBaseTheme"/>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:textColorHint">@color/red_dark</item>
+    </style>
     <style name="ButtonBarButton"/>
 	<style name="ButtonBar" parent="@android:style/ButtonBar"/>
+
     
 </resources>

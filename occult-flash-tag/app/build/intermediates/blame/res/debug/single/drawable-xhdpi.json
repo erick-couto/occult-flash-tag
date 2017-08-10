@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_action_android_flash.png",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/drawable-xhdpi/ic_action_android_flash.png"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_launcher.png",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    }
+]

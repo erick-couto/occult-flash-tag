@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_out.xml",
+        "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/design_snackbar_in.xml",
+        "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_snackbar_in.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/design_fab_out.xml",
+        "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_fab_out.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_in.xml",
+        "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/design_snackbar_out.xml",
+        "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_snackbar_out.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/design_fab_in.xml",
+        "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_fab_in.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_popup_exit.xml"
+    }
+]

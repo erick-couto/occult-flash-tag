@@ -22,6 +22,8 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import br.eti.erickcouto.occultflashtag.R;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -35,6 +37,11 @@ public class TimePickerFragment extends DialogFragment implements
 
 	boolean start;
 
+	public TimePickerFragment()	{
+	}
+
+
+	@SuppressLint("ValidFragment")
 	public TimePickerFragment(boolean start) {
 		this.start = start;
 	}
@@ -46,7 +53,7 @@ public class TimePickerFragment extends DialogFragment implements
 		int hour = c.get(Calendar.HOUR_OF_DAY);
 		int minute = c.get(Calendar.MINUTE);
 
-		return new TimePickerDialog(getActivity(), this, hour, minute, true);
+		return new TimePickerDialog(getActivity(),TimePickerDialog.THEME_DEVICE_DEFAULT_DARK, this, hour, minute, true);
 	}
 
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -54,23 +61,23 @@ public class TimePickerFragment extends DialogFragment implements
 				.getApplication());
 		if (start) {
 			Long ini = (hourOfDay * 3600000L) + (minute * 60000L);
-			data.setTimeForCheckpoint1(ini);
+			data.setTimeForStart(ini);
 			((TextView) getActivity().findViewById(R.id.txt_estimated_utc1))
 					.setText(hourFormat(ini));
 
 		} else {
 			Long end = (hourOfDay * 3600000L) + (minute * 60000L);
-			data.setTimeForCheckpoint2(end);
+			data.setTimeForEnd(end);
 			((TextView) getActivity().findViewById(R.id.txt_estimated_utc2))
 					.setText(hourFormat(end));
 		}
 
-		if (data.getTimeForCheckpoint1() != null
-				&& data.getTimeForCheckpoint2() != null) {
-			Button btn_start = ((Button) getActivity().findViewById(
-					R.id.btn_start));
+		if (data.getTimeForStart() != null) {
+			Button btn_start = ((Button) getActivity().findViewById(R.id.btn_start));
 			btn_start.setEnabled(true);
 			btn_start.setClickable(true);
+		} else {
+
 		}
 	}
 
@@ -80,7 +87,7 @@ public class TimePickerFragment extends DialogFragment implements
 		long hourModule = millis % 3600000;
 		long minutes = hourModule / 60000;
 
-		return hour + ":" + minutes + ":00.000";
+		return hour + ":" + minutes + ":00";
 	}
 
 }

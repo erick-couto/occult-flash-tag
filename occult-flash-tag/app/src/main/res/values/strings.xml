@@ -2,23 +2,27 @@
 <resources>
 
     <string name="app_name">Occult Flash Tag</string>
-    <string name="app_description">Use phone\'s flash to mark the first and the last frame of a video with high accuracy (milliseconds)</string>
+    <string name="app_description">Use phone\'s flash to mark videos with high accuracy (milliseconds)</string>
     <string name="app_credits">Developed by Erick Couto under Apache 2.0 License. Full source code available on https://github.com/erick-couto/occult-flash-tag</string>
-    <string name="app_use">Please, tell to us if you have used Occult Flash Tag on your videos.</string>
+    <string name="app_use">Special Thanks to teams IOTA, REA, BRAMON and NGC-51. Individual thanks to Tony George, Dave Gault and Breno Giacchini.</string>
     <string name="out_body_1">Body 1</string>
     <string name="out_body_2">Body 2</string>
     <string name="out_occult">occult</string>
     <string name="out_eclipse">eclipse</string>
     <string name="out_transit">transit</string>
     <string name="out_text_flash_measurement">Flash Measurement</string>
-    <string name="out_text_share_results">Share Results</string>
+    <string name="out_text_list_results">List Results</string>
+	<string name="out_text_share">Share Result</string>
+	<string name="out_text_list_audit">Audit Time</string>
+	<string name="out_text_delete_event">Delete Event</string>
     <string name="out_status_bar_ready">Ready</string>
-	<string name="out_empty_timer">--:--:--.---</string>
+	<string name="out_empty_timer">--</string>
 	<string name="out_wait_gps_fix">wait fix</string>
-    <string name="out_estimated_utc_1">Estimated UTC 1</string>
-    <string name="out_t1">T1</string>
-    <string name="out_estimated_utc_2">Estimated UTC 2</string>    
-    <string name="out_t2">T2</string>
+    <string name="out_estimated_utc_start">1st stamp</string>
+    <string name="out_t1">pre</string>
+    <string name="out_estimated_utc_end">2th stamp</string>
+	<string name="out_estimated_utc_title">Estimated Flash Shot (in UTC)</string>
+    <string name="out_t2">Post</string>
     <string name="out_start">start</string>
     <string name="out_stop">stop</string>
     <string name="out_finished_upper">FINISHED</string>
@@ -26,6 +30,7 @@
     <string name="out_utc1_audited">UTC1 Audited</string>
     <string name="out_utc2_audited">UTC2 Audited</string>
     <string name="out_date">Date</string>
+	<string name="out_no_active_events">Start a new flash mark session on previous screen to see the result.</string>
     <string name="out_flash_not_available">Flash not available</string>
     <string name="out_successful_flash_measurement">Successful flash measurement</string>
     <string name="out_milliseconds_symbol">ms.</string>
@@ -38,6 +43,8 @@
     <string name="out_share_error_message">Nothing to share! You need complete a full flash session (two flashes) to share the results. Please, start your new session and wait by FINISHED message.</string>
     <string name="out_prefs_ntp_server">NTP Server</string>
     <string name="out_prefs_ntp_server_default">USA01</string>
+	<string name="out_prefs_repetitions">Flash marks per checkpoint</string>
+	<string name="out_prefs_repetitions_default">1</string>
     <string name="out_prefs_video_format">Video Format</string>
     <string name="out_prefs_video_format_default">33</string>
     <string name="out_prefs_integration_rate">Integration Rate</string>
@@ -112,5 +119,18 @@
 		<item>128</item>
 		<item>256</item>
     </string-array>
-    		
+
+	<string-array name="repetitions">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+	</string-array>
+
+	<string-array name="repetitions_values">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+	</string-array>
+
+
 </resources>

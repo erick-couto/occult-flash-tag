@@ -22,6 +22,9 @@ import android.app.Application;
 
 public class DataApplication extends Application {
 
+	private Event event;
+	private int currentCheckpointPosition;
+
 	private Set<Long> checkpoints;
 	private Set<Long> processedCheckpoints;
 
@@ -46,10 +49,8 @@ public class DataApplication extends Application {
 	private Long ntpFirstCheckpoint;
 	private Long ntpSecondCheckpoint;
 
-	private Long timeForCheckpoint1;
-	private Long timeForCheckpoint2;
-
-	private Long cameraDelay = 0l;
+	private Long timeForStart;
+	private Long timeForEnd;
 
 	private Long timeControlUptimeStart;
 	private Long timeControlCountdown;
@@ -61,21 +62,21 @@ public class DataApplication extends Application {
 	private Double checkpointLatitude;
 	private Double checkpointLongitude;
 
-	
-	public Long getTimeForCheckpoint1() {
-		return timeForCheckpoint1;
+
+	public Long getTimeForStart() {
+		return timeForStart;
 	}
 
-	public void setTimeForCheckpoint1(Long timeForCheckpoint1) {
-		this.timeForCheckpoint1 = timeForCheckpoint1;
+	public void setTimeForStart(Long timeForStart) {
+		this.timeForStart = timeForStart;
 	}
 
-	public Long getTimeForCheckpoint2() {
-		return timeForCheckpoint2;
+	public Long getTimeForEnd() {
+		return timeForEnd;
 	}
 
-	public void setTimeForCheckpoint2(Long timeForCheckpoint2) {
-		this.timeForCheckpoint2 = timeForCheckpoint2;
+	public void setTimeForEnd(Long timeForEnd) {
+		this.timeForEnd = timeForEnd;
 	}
 
 	public Set<Long> getCheckpoints() {
@@ -84,14 +85,6 @@ public class DataApplication extends Application {
 
 	public void setCheckpoints(Set<Long> checkpoints) {
 		this.checkpoints = checkpoints;
-	}
-
-	public Long getCameraDelay() {
-		return cameraDelay;
-	}
-
-	public void setCameraDelay(Long cameraDelay) {
-		this.cameraDelay = cameraDelay;
 	}
 
 	public Long getTimeControlUptimeStart() {
@@ -294,6 +287,19 @@ public class DataApplication extends Application {
 		this.checkpoint2ntp = checkpoint2ntp;
 	}
 
-	
+	public int getCurrentCheckpointPosition() {
+		return currentCheckpointPosition;
+	}
 
+	public void setCurrentCheckpointPosition(int currentCheckpointPosition) {
+		this.currentCheckpointPosition = currentCheckpointPosition;
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
 }

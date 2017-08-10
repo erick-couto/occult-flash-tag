@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
-        "source": "C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\src\\main\\res\\xml\\preferences.xml"
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/xml/preferences.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/xml/preferences.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/C:\\Users\\Erick\\StudioProjects\\occult-flash-tag\\app\\src\\main\\res\\xml\\preferences.xml"
     }
 ]
