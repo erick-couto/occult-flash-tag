@@ -1,7 +1,4 @@
-#Tue Aug 08 00:00:31 BRT 2017
-base.0=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b56ac1352cd17415ea76d0b51b68b218e23221a2
-renamed.1=classes2.dex
+#Thu Aug 10 22:03:01 BRT 2017
+base.0=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
-file.1=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1f9cf52833e939ad77a0ed53243db1e9413e79aa/classes.dex
-base.1=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1f9cf52833e939ad77a0ed53243db1e9413e79aa
-file.0=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b56ac1352cd17415ea76d0b51b68b218e23221a2/classes.dex
+file.0=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

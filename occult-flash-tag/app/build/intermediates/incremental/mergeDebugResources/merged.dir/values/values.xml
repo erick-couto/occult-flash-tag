@@ -38,6 +38,7 @@
 		<item>SOUTH AFRICA - NTP.ORG</item>
 		<item>SPAIN - NTP.ORG</item>										        		
 		<item>USA - NTP.ORG</item>
+		<item>CUSTOM...</item>
     </string-array>
     <string-array name="ntp_servers_values">
 		<item>ARG01</item>
@@ -55,6 +56,7 @@
 		<item>AFR01</item>
 		<item>SPA01</item>										        		
 		<item>USA01</item>
+		<item/>
     </string-array>
     <string-array name="repetitions">
 		<item>1</item>
@@ -386,6 +388,9 @@
     <string name="out_milliseconds_symbol">ms.</string>
     <string name="out_no_active_events">Start a new flash mark session on previous screen to see the result.</string>
     <string name="out_occult">occult</string>
+    <string name="out_prefs_custom_ntp_server">Custom NTP Server</string>
+    <string name="out_prefs_custom_ntp_server_default"/>
+    <string name="out_prefs_custom_ntp_server_summary">URL</string>
     <string name="out_prefs_integration_rate">Integration Rate</string>
     <string name="out_prefs_integration_rate_default">1</string>
     <string name="out_prefs_ntp_server">NTP Server</string>

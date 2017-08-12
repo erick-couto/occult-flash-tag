@@ -8,6 +8,11 @@
         android:entries="@array/ntp_servers"
         android:entryValues="@array/ntp_servers_values"
         android:defaultValue="@string/out_prefs_ntp_server_default" />
+    <EditTextPreference
+        android:inputType="textUri"
+        android:key="custom_ntp_server"
+        android:summary="@string/out_prefs_custom_ntp_server_summary"
+        android:title="@string/out_prefs_custom_ntp_server" />
     <ListPreference
         android:key="repetitions"
         android:title="@string/out_prefs_repetitions"
@@ -16,5 +21,4 @@
         android:entries="@array/repetitions"
         android:entryValues="@array/repetitions_values"
         android:defaultValue="@string/out_prefs_repetitions_default" />
-
 </PreferenceScreen>

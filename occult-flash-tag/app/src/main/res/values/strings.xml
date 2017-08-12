@@ -41,8 +41,11 @@
     <string name="out_latitude">Latitude</string>
     <string name="out_longitude">Longitude</string>
     <string name="out_share_error_message">Nothing to share! You need complete a full flash session (two flashes) to share the results. Please, start your new session and wait by FINISHED message.</string>
+	<string name="out_prefs_custom_ntp_server">Custom NTP Server</string>
+	<string name="out_prefs_custom_ntp_server_summary">URL</string>
     <string name="out_prefs_ntp_server">NTP Server</string>
     <string name="out_prefs_ntp_server_default">USA01</string>
+	<string name="out_prefs_custom_ntp_server_default"></string>
 	<string name="out_prefs_repetitions">Flash marks per checkpoint</string>
 	<string name="out_prefs_repetitions_default">1</string>
     <string name="out_prefs_video_format">Video Format</string>
@@ -66,6 +69,7 @@
 		<item>SOUTH AFRICA - NTP.ORG</item>
 		<item>SPAIN - NTP.ORG</item>										        		
 		<item>USA - NTP.ORG</item>
+		<item>CUSTOM...</item>
     </string-array>
 
         <string-array name="ntp_servers_values">
@@ -84,6 +88,7 @@
 		<item>AFR01</item>
 		<item>SPA01</item>										        		
 		<item>USA01</item>
+		<item></item>
     </string-array>
 
     <string-array name="video_format">

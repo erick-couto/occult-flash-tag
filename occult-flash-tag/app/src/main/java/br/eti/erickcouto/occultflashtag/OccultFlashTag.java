@@ -76,6 +76,7 @@ public class OccultFlashTag extends Activity {
 	private LocationListener locationListener;
 	private Location bestLocation;
 	private String ntpServer;
+	private String customNtpServer;
 	private int marks;
 	private int activeBootCounter;
 
@@ -104,6 +105,14 @@ public class OccultFlashTag extends Activity {
 			ed.commit();
 		}
 		marks = Integer.valueOf(prefs.getString("repetitions", null));
+
+		String customNtp = prefs.getString("custom_ntp_server", null);
+		if (customNtp == null){
+			SharedPreferences.Editor ed = prefs.edit();
+			ed.putString("custom_ntp_server", getText(R.string.out_prefs_custom_ntp_server_default).toString());
+			ed.commit();
+		}
+		customNtpServer = prefs.getString("custom_ntp_server", null);
 
 		Integer bootCount = prefs.getInt("boot_count", 0);
 		if (bootCount == 0) {

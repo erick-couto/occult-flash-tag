@@ -13,7 +13,8 @@ import java.util.List;
 public class NtpService extends IntentService {
 
     private SharedPreferences prefs;
-    private ENtpServer ntpServer;
+    private ENtpServer ntpServer = null;
+    private String customNtpServer;
     private final SntpClient client = new SntpClient();
 
     public NtpService() {
@@ -30,9 +31,13 @@ public class NtpService extends IntentService {
             int activeBootCounter = Integer.valueOf(prefs.getInt("boot_count", 0));
 
             String prefsServer = prefs.getString("ntp_server", null);
-            ntpServer = ENtpServer.getServerByCode(prefsServer);
+            customNtpServer = prefs.getString("custom_ntp_server", null);
 
-            if(client.requestTime(ntpServer.getServer(), 6000)){
+            if(prefsServer != null && !prefsServer.equals("")){
+                ntpServer = ENtpServer.getServerByCode(prefsServer);
+            }
+
+            if(client.requestTime((ntpServer == null) ? customNtpServer : ntpServer.getServer(), 6000)){
                 long now = client.getNtpTime();
                 long reference = client.getNtpTimeReference();
 
@@ -45,7 +50,9 @@ public class NtpService extends IntentService {
                 List<Mark> values = db.getAllUnauditedsMarks(activeBootCounter);
 
                 for (Mark mark: values) {
-                    db.storeAuditedTime(mark.getId(), mark.getElapsedTime() + addValue);
+                    long actual = client.getNtpTime() + mark.getElapsedTime() - client.getNtpTimeReference();
+
+                    db.storeAuditedTime(mark.getId(), actual);
                     db.markEventAsSynced(mark.getEventId());
                 }
 

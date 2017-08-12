@@ -17,7 +17,8 @@ public enum ENtpServer implements Serializable {
 	MEX01 ("mx.pool.ntp.org"),
 	AFR01 ("za.pool.ntp.org"),
 	SPA01 ("es.pool.ntp.org"),										        		
-	USA01 ("us.pool.ntp.org");
+	USA01 ("us.pool.ntp.org"),
+	CUSTO (null);
 	
 	private String server;
 	
