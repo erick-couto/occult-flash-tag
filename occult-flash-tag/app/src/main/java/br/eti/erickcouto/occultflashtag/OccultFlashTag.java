@@ -35,6 +35,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.location.Location;
@@ -58,6 +59,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class OccultFlashTag extends Activity {
 
@@ -147,6 +150,17 @@ public class OccultFlashTag extends Activity {
 	            }
 	    });
 
+		String versionName = "";
+
+		try {
+			versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		TextView staturBar = (TextView) findViewById(R.id.txt_status_bar);
+		staturBar.setText("Version " + versionName);
+
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setMessage("Mounting access data");
@@ -210,60 +224,6 @@ public class OccultFlashTag extends Activity {
 	    }
 	}
 
-	private String getFormattedResultsForShare(){
-		StringBuffer sb = new StringBuffer(); 
-		sb.append("Occult Flash Tag");
-		sb.append(BREAK_LINE); 
-		sb.append("==================================");
-		sb.append(BREAK_LINE); 
-
-		sb.append(getText(R.string.out_date) + ": ");
-		sb.append(formatDateByMilliseconds(appData.getCheckpoint1ntp()));
-		sb.append(BREAK_LINE); 
-		sb.append(BREAK_LINE); 
-		
-		sb.append(appData.getCheckpointBody1());
-
-		String event = appData.getCheckpointEvent();
-		if(event == null) event = "OC";
-		
-		if("OC".equals(event)){
-			sb.append(" (" + getText(R.string.out_occult) + ") ");
-		}
-		else if("EC".equals(event)){
-			sb.append(" (" + getText(R.string.out_eclipse) + ") ");
-		}
-		else if("TR".equals(event)){
-			sb.append(" (" + getText(R.string.out_transit) + ") ");
-		}
-
-		sb.append(appData.getCheckpointBody2());
-		sb.append(BREAK_LINE); 
-		
-		sb.append(getText(R.string.out_estimated_utc_start) + ": ");
-		sb.append(formatTimeByMilliseconds(appData.getCheckpoint1ntp()));
-		sb.append(BREAK_LINE); 
-
-		sb.append(getText(R.string.out_estimated_utc_end) + ": ");
-		sb.append(formatTimeByMilliseconds(appData.getCheckpoint2ntp()));
-		sb.append(BREAK_LINE); 
-
-		sb.append(getText(R.string.out_altitude) + ": ");
-		sb.append(appData.getCheckpointAltitude());
-		sb.append(BREAK_LINE); 
-
-		sb.append(getText(R.string.out_latitude) + ": ");
-		sb.append(appData.getCheckpointLatitude());
-		sb.append(BREAK_LINE); 
-
-		sb.append(getText(R.string.out_longitude) + ": ");
-		sb.append(appData.getCheckpointLongitude());
-		sb.append(BREAK_LINE); 
-
-		return sb.toString();
-		
-	}
-	
 	public void showUTC1Dialog(View v) {
 		DialogFragment newFragment = new TimePickerFragment(true);
 		newFragment.show(this.getFragmentManager(), "UTC1");
@@ -443,8 +403,8 @@ public class OccultFlashTag extends Activity {
 						Parameters p = camera.getParameters();
 						p.setFlashMode(Parameters.FLASH_MODE_TORCH);
 						camera.setParameters(p);
+						event.addRegisteredTime(SystemClock.elapsedRealtime()); //Changed
 						camera.startPreview();
-						event.addRegisteredTime(SystemClock.elapsedRealtime());
 
 						wait(1000);
 						camera.stopPreview();
@@ -609,7 +569,16 @@ public class OccultFlashTag extends Activity {
  
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.ic_launcher);
-        builder.setTitle(R.string.app_name);
+
+		String versionName = "";
+
+		try {
+			versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		builder.setTitle("Occult Flash Tag " + versionName);
         builder.setView(messageView);
         builder.create();
         builder.show();
@@ -630,13 +599,22 @@ public class OccultFlashTag extends Activity {
 
 			if (version == null) version = 0.00f;
 
-			if (version < Constants.APP_VERSION) {
+			Long versionCode = 0l;
+
+			try {
+				versionCode = Long.valueOf(getPackageManager().getPackageInfo(getPackageName(), 0).versionCode);
+			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
+
+
+			if (version < versionCode) {
 
 				try {
 					db.open();
 					publishProgress(75);
 					db.close();
-					ed.putFloat("version", Constants.APP_VERSION);
+					ed.putFloat("version", versionCode);
 					publishProgress(100);
 					ed.commit();
 

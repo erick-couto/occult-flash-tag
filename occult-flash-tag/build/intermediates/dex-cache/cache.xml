@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="2bc884c19b986aa10bd5149655dde4105ad7a6fe">
+        sha1="3349f12a1c42c4855032da11d963ca07734741f6">
         <dex dex="/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b56ac1352cd17415ea76d0b51b68b218e23221a2/classes.dex" />
     </item>
     <item

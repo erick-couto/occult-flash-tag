@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import java.util.List;
@@ -37,22 +38,16 @@ public class NtpService extends IntentService {
                 ntpServer = ENtpServer.getServerByCode(prefsServer);
             }
 
+            DBAdapter db = new DBAdapter(this);
+            List<Mark> values = db.getAllUnauditedsMarks(activeBootCounter);
+
             if(client.requestTime((ntpServer == null) ? customNtpServer : ntpServer.getServer(), 6000)){
-                long now = client.getNtpTime();
-                long reference = client.getNtpTimeReference();
-
-                DBAdapter db = new DBAdapter(this);
-
-                Long addValue = now - reference;
-
-
-                //Update all pendind sync marks
-                List<Mark> values = db.getAllUnauditedsMarks(activeBootCounter);
+                Long elapsed = SystemClock.elapsedRealtime();
+                Long ntpTime = client.getNtpTime();
 
                 for (Mark mark: values) {
-                    long actual = client.getNtpTime() + mark.getElapsedTime() - client.getNtpTimeReference();
-
-                    db.storeAuditedTime(mark.getId(), actual);
+                    Long difference = elapsed - mark.getElapsedTime();
+                    db.storeAuditedTime(mark.getId(), ntpTime - difference);
                     db.markEventAsSynced(mark.getEventId());
                 }
 
@@ -63,13 +58,14 @@ public class NtpService extends IntentService {
                     db.markEventAsError(mark.getEventId());
                 }
 
-                db.close();
-
                 Intent verifyIntent=new Intent("br.eti.erickcouto.occultflashtag.statuschange");
                 verifyIntent.putExtra("message", "statuschange");
                 NtpService.this.sendBroadcast(verifyIntent);
 
             }
+
+            db.close();
+
         }
     }
 

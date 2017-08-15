@@ -1,4 +1,4 @@
-#Thu Aug 10 21:46:54 BRT 2017
+#Sun Aug 13 07:27:41 BRT 2017
 base.0=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2
 renamed.0=classes.dex
 file.0=/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex
