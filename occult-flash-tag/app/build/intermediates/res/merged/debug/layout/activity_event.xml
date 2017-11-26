@@ -8,6 +8,19 @@
     >
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/out_sync_ntp"
+        android:id="@+id/txt_loading_flash"
+        android:visibility="gone"
+        android:padding="16sp"
+        android:textColor="@color/red"
+        android:layout_alignTop="@+id/txt_without_events"
+        android:gravity="center"
+        />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

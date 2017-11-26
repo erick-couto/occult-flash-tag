@@ -20,24 +20,24 @@
         "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_edit_text_material.xml"
     },
     {
-        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_off_mtrl.xml",
-        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_btn_radio_off_mtrl.xml"
-    },
-    {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_ic_menu_share_material.xml",
         "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_ic_menu_share_material.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_off_mtrl.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_btn_radio_off_mtrl.xml"
     },
     {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_ic_ab_back_material.xml",
         "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_ic_ab_back_material.xml"
     },
     {
-        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
-        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_ratingbar_indicator_material.xml"
-    },
-    {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
         "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/drawable/abc_ratingbar_indicator_material.xml"
     },
     {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",

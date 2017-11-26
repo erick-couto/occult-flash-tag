@@ -4,6 +4,10 @@
         "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/anim/design_bottom_sheet_slide_out.xml"
     },
     {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/flash.xml",
+        "source": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/src/main/res/anim/flash.xml"
+    },
+    {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
         "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
     },

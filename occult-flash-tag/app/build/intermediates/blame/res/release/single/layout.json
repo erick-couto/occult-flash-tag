@@ -28,20 +28,20 @@
         "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/layout/design_navigation_item_header.xml"
     },
     {
-        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/abc_screen_simple.xml",
-        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/layout/abc_screen_simple.xml"
-    },
-    {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/design_navigation_menu.xml",
         "source": "/home/erick/.android/build-cache/147c7eb2876d6820ddb34fb4be9ed7352db06081/output/res/layout/design_navigation_menu.xml"
     },
     {
-        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/abc_dialog_title_material.xml",
-        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/layout/abc_dialog_title_material.xml"
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/abc_screen_simple.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/notification_template_lines.xml",
         "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/abc_dialog_title_material.xml",
+        "source": "/home/erick/.android/build-cache/d0482cb257aaef773ca34827efdebf594c2b9f5a/output/res/layout/abc_dialog_title_material.xml"
     },
     {
         "merged": "/home/erick/AndroidStudioProjects/occult-flash-tag/occult-flash-tag/app/build/intermediates/res/merged/release/layout/occult_flash_tag.xml",

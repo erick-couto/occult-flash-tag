@@ -30,6 +30,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -64,6 +66,13 @@ public class EventActivity extends Activity {
         IntentFilter intentFilter = new IntentFilter("br.eti.erickcouto.occultflashtag.statuschange");
         registerReceiver(messageReceiver, intentFilter);
 
+        // load the animation
+        Animation animFlash = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.flash);
+
+        TextView tx = (TextView) findViewById(R.id.txt_loading_flash);
+        tx.startAnimation(animFlash);
+
+
         populaAsyncTask.execute();
 
     }
@@ -73,19 +82,25 @@ public class EventActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getExtras().getString("message") != null) {
-                if (intent.getExtras().getString("message").equals("statuschange")) {
+                if (intent.getExtras().getString("message").equals("updating")) {
+                    TextView tx = (TextView) findViewById(R.id.txt_loading_flash);
+                    tx.setVisibility(View.VISIBLE);
+                } else if (intent.getExtras().getString("message").equals("statuschange")) {
+
+                    TextView tx = (TextView) findViewById(R.id.txt_loading_flash);
+                    tx.setVisibility(View.GONE);
 
                     DBAdapter db = new DBAdapter(EventActivity.this);
                     List<Event> events = db.getAllEvents();
                     mAdapter = new EventAdapter(EventActivity.this, events);
                     recList.setAdapter(mAdapter);
 
-                    TextView tx = (TextView) findViewById(R.id.txt_without_events);
+                    TextView tx2 = (TextView) findViewById(R.id.txt_without_events);
 
                     if(events.size() == 0){
-                        tx.setVisibility(View.VISIBLE);
+                        tx2.setVisibility(View.VISIBLE);
                     } else {
-                        tx.setVisibility(View.GONE);
+                        tx2.setVisibility(View.GONE);
                     }
 
                 }

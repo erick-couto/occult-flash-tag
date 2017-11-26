@@ -30,6 +30,7 @@
     <string name="out_utc1_audited">UTC1 Audited</string>
     <string name="out_utc2_audited">UTC2 Audited</string>
     <string name="out_date">Date</string>
+    <string name="out_sync_ntp">Synchronizing NTP, wait...</string>
 	<string name="out_no_active_events">Start a new flash mark session on previous screen to see the result.</string>
     <string name="out_flash_not_available">Flash not available</string>
     <string name="out_successful_flash_measurement">Successful flash measurement</string>
@@ -48,6 +49,9 @@
 	<string name="out_prefs_custom_ntp_server_default"></string>
 	<string name="out_prefs_repetitions">Flash marks per checkpoint</string>
 	<string name="out_prefs_repetitions_default">1</string>
+	<string name="out_prefs_accuracy">NTP time accuracy</string>
+	<string name="out_prefs_accuracy_default">7</string>
+
     <string name="out_prefs_video_format">Video Format</string>
     <string name="out_prefs_video_format_default">33</string>
     <string name="out_prefs_integration_rate">Integration Rate</string>
@@ -135,6 +139,21 @@
 		<item>1</item>
 		<item>2</item>
 		<item>3</item>
+	</string-array>
+
+
+	<string-array name="accuracy">
+		<item>low</item>
+		<item>medium</item>
+		<item>high</item>
+		<item>very high</item>
+	</string-array>
+
+	<string-array name="accuracy_values">
+		<item>3</item>
+		<item>7</item>
+		<item>14</item>
+		<item>26</item>
 	</string-array>
 
 

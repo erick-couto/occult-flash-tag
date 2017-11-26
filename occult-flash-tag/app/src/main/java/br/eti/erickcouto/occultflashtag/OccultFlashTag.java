@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TimeZone;
+import java.util.Timer;
 import java.util.TreeSet;
 
 import br.eti.erickcouto.occultflashtag.R;
@@ -47,6 +48,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -81,6 +83,7 @@ public class OccultFlashTag extends Activity {
 	private String ntpServer;
 	private String customNtpServer;
 	private int marks;
+	private int accuracy;
 	private int activeBootCounter;
 
 	@Override
@@ -108,6 +111,14 @@ public class OccultFlashTag extends Activity {
 			ed.commit();
 		}
 		marks = Integer.valueOf(prefs.getString("repetitions", null));
+
+		String accuracy = prefs.getString("accuracy", null);
+		if (accuracy == null){
+			SharedPreferences.Editor ed = prefs.edit();
+			ed.putString("accuracy", getText(R.string.out_prefs_accuracy_default).toString());
+			ed.commit();
+		}
+		this.accuracy = Integer.valueOf(prefs.getString("accuracy", null));
 
 		String customNtp = prefs.getString("custom_ntp_server", null);
 		if (customNtp == null){
@@ -166,6 +177,15 @@ public class OccultFlashTag extends Activity {
 		progressDialog.setMessage("Mounting access data");
 		progressDialog.setCancelable(false);
 		progressDialog.show();
+
+
+		String server = null;
+
+		if(ntpServer != null && !ntpServer.equals("")){
+			server = ENtpServer.getServerByCode(ntpServer).getServer();
+		} else {
+			server = customNtpServer;
+		}
 
 		carregaDadosAsyncTask.execute();
 
@@ -236,28 +256,35 @@ public class OccultFlashTag extends Activity {
 
 	public void start(View v) {
 
-		SortedSet<Long> checkpoints = generateCheckpoints(new Date(), appData.getTimeForStart(), appData.getTimeForEnd(), marks);
+		if(appData.getTimeForEnd() != null && appData.getTimeForStart().equals(appData.getTimeForEnd())){
+			Log.i("OFT", "Same start and end time");
+			Toast.makeText(this, "1st e 2th stamps have the same time, please change it!", Toast.LENGTH_LONG).show();
+		} else {
+			SortedSet<Long> checkpoints = generateCheckpoints(new Date(), appData.getTimeForStart(), appData.getTimeForEnd(), marks);
 
-		Event event = new Event(checkpoints);
+			Event event = new Event(checkpoints);
 
-		TextView txtBody1 = ((TextView) findViewById(R.id.imp_body_1));
-		event.setBody1(txtBody1.getText().toString() != null && !txtBody1.getText().toString().trim().equals("") ? txtBody1.getText().toString() : "BODY 1");
-		TextView txtBody2 = ((TextView) findViewById(R.id.imp_body_2));
-		event.setBody2(txtBody2.getText().toString() != null && !txtBody2.getText().toString().trim().equals("") ? txtBody2.getText().toString() : "BODY 2");
-		event.setType(appData.getCurrentEvent() != null ? appData.getCurrentEvent() : "OC");
-		event.setStartDate(new Date());
+			TextView txtBody1 = ((TextView) findViewById(R.id.imp_body_1));
+			event.setBody1(txtBody1.getText().toString() != null && !txtBody1.getText().toString().trim().equals("") ? txtBody1.getText().toString() : "BODY 1");
+			TextView txtBody2 = ((TextView) findViewById(R.id.imp_body_2));
+			event.setBody2(txtBody2.getText().toString() != null && !txtBody2.getText().toString().trim().equals("") ? txtBody2.getText().toString() : "BODY 2");
+			event.setType(appData.getCurrentEvent() != null ? appData.getCurrentEvent() : "OC");
+			event.setStartDate(new Date());
 
-		appData.setEvent(event);
+			appData.setEvent(event);
 
-		Button BtnStart = ((Button) findViewById(R.id.btn_start));
-		Button BtnStop = ((Button) findViewById(R.id.btn_stop));
+			Button BtnStart = ((Button) findViewById(R.id.btn_start));
+			Button BtnStop = ((Button) findViewById(R.id.btn_stop));
 
-		BtnStart.setClickable(false);
-		BtnStart.setEnabled(false);
-		BtnStop.setClickable(true);
-		BtnStop.setEnabled(true);
+			BtnStart.setClickable(false);
+			BtnStart.setEnabled(false);
+			BtnStop.setClickable(true);
+			BtnStop.setEnabled(true);
 
-		addToTimeControl();
+			addToTimeControl();
+
+		}
+
 
 	}
 
@@ -403,8 +430,9 @@ public class OccultFlashTag extends Activity {
 						Parameters p = camera.getParameters();
 						p.setFlashMode(Parameters.FLASH_MODE_TORCH);
 						camera.setParameters(p);
-						event.addRegisteredTime(SystemClock.elapsedRealtime()); //Changed
+
 						camera.startPreview();
+						event.addRegisteredTime(SystemClock.elapsedRealtime()); //Changed
 
 						wait(1000);
 						camera.stopPreview();

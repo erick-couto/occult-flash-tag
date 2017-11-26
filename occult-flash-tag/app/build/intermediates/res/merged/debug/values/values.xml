@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="accuracy">
+		<item>low</item>
+		<item>medium</item>
+		<item>high</item>
+		<item>very high</item>
+	</string-array>
+    <string-array name="accuracy_values">
+		<item>3</item>
+		<item>7</item>
+		<item>14</item>
+		<item>26</item>
+	</string-array>
     <string-array name="integration_rate">
 		<item>x1</item>
 		<item>x2</item>
@@ -388,6 +400,8 @@
     <string name="out_milliseconds_symbol">ms.</string>
     <string name="out_no_active_events">Start a new flash mark session on previous screen to see the result.</string>
     <string name="out_occult">occult</string>
+    <string name="out_prefs_accuracy">NTP time accuracy</string>
+    <string name="out_prefs_accuracy_default">7</string>
     <string name="out_prefs_custom_ntp_server">Custom NTP Server</string>
     <string name="out_prefs_custom_ntp_server_default"/>
     <string name="out_prefs_custom_ntp_server_summary">URL</string>
@@ -405,6 +419,7 @@
     <string name="out_status_bar_ready">Ready</string>
     <string name="out_stop">stop</string>
     <string name="out_successful_flash_measurement">Successful flash measurement</string>
+    <string name="out_sync_ntp">Synchronizing NTP, wait...</string>
     <string name="out_t1">pre</string>
     <string name="out_t2">Post</string>
     <string name="out_text_delete_event">Delete Event</string>
