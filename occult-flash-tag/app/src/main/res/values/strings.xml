@@ -4,7 +4,7 @@
     <string name="app_name">Occult Flash Tag</string>
     <string name="app_description">Use phone\'s flash to mark videos with high accuracy (milliseconds)</string>
     <string name="app_credits">Developed by Erick Couto under Apache 2.0 License. Full source code available on https://github.com/erick-couto/occult-flash-tag</string>
-    <string name="app_use">Special Thanks to teams IOTA, REA, BRAMON and NGC-51. Individual thanks to Tony George, Dave Gault and Breno Giacchini.</string>
+    <string name="app_use">Special Thanks to teams IOTA, REA, BRAMON, AstroARA and NGC-51. Individual thanks to Tony George, Dave Gault and Breno Giacchini.</string>
     <string name="out_body_1">Body 1</string>
     <string name="out_body_2">Body 2</string>
     <string name="out_occult">occult</string>
@@ -51,6 +51,8 @@
 	<string name="out_prefs_repetitions_default">1</string>
 	<string name="out_prefs_accuracy">NTP time accuracy</string>
 	<string name="out_prefs_accuracy_default">7</string>
+	<string name="out_prefs_flash_duration">Flash Duration (ms)</string>
+	<string name="out_prefs_flash_duration_default">100</string>
 
     <string name="out_prefs_video_format">Video Format</string>
     <string name="out_prefs_video_format_default">33</string>
@@ -95,7 +97,39 @@
 		<item></item>
     </string-array>
 
-    <string-array name="video_format">
+	<string-array name="flash_duration">
+		<item>1</item>
+		<item>5</item>
+		<item>10</item>
+		<item>33</item>
+		<item>40</item>
+		<item>100</item>
+		<item>200</item>
+		<item>500</item>
+		<item>1000</item>
+		<item>2000</item>
+		<item>5000</item>
+	</string-array>
+
+	<string-array name="flash_duration_values">
+		<item>1</item>
+		<item>5</item>
+		<item>10</item>
+		<item>33</item>
+		<item>40</item>
+		<item>100</item>
+		<item>200</item>
+		<item>500</item>
+		<item>1000</item>
+		<item>2000</item>
+		<item>5000</item>
+	</string-array>
+
+
+
+
+
+	<string-array name="video_format">
 		<item>NTSC - 29.97 fps</item>
 		<item>PAL - 25 fps</item>
     </string-array>

@@ -16,39 +16,45 @@ package br.eti.erickcouto.occultflashtag;
  * limitations under the License.
  */
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TimeZone;
-import java.util.Timer;
 import java.util.TreeSet;
 
-import br.eti.erickcouto.occultflashtag.R;
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,8 +67,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 
-import org.w3c.dom.Text;
+import com.flurry.android.FlurryAgent;
 
 public class OccultFlashTag extends Activity {
 
@@ -70,31 +78,69 @@ public class OccultFlashTag extends Activity {
 	private static final String BREAK_LINE = "\n";
 
 	private CarregaDadosIniciaisAsyncTask carregaDadosAsyncTask = new CarregaDadosIniciaisAsyncTask();
+//	private GpsTimeTask gpsTimeTask = new GpsTimeTask(this);
+
 	private ProgressDialog progressDialog;
 
 	private Handler timeControl;
-	public CountDownTimer visualCountdown;
+	public  CountDownTimer visualCountdown;
 	private DataApplication appData;
 	private SharedPreferences prefs;
-	private LocationManager locationManager;
 	private String locationProvider;
+    private LocationManager locationManager;
 	private LocationListener locationListener;
 	private Location bestLocation;
 	private String ntpServer;
 	private String customNtpServer;
 	private int marks;
 	private int accuracy;
+	private int flashDuration;
 	private int activeBootCounter;
+
+	private CameraManager mCameraManager;
+	private String mCameraId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		new FlurryAgent.Builder()
+				.withLogLevel(Log.VERBOSE)
+				.withLogEnabled(true)
+				.build(this, "FSBDJT3SGGHWPXMDWXSF");
+
 		setContentView(R.layout.occult_flash_tag);
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+		Boolean isFlashAvailable = getApplicationContext().getPackageManager()
+				.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+
+		if (!isFlashAvailable) {
+
+			AlertDialog alert = new AlertDialog.Builder(OccultFlashTag.this)
+					.create();
+			alert.setTitle("Error !!");
+			alert.setMessage("Your device doesn't support flash light!");
+			alert.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					// closing the application
+					finish();
+					System.exit(0);
+				}
+			});
+			alert.show();
+			return;
+		}
+
        	showBodySelector();
        	activateControls();
+
+		mCameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+		try {
+			mCameraId = mCameraManager.getCameraIdList()[0];
+		} catch (CameraAccessException e) {
+			e.printStackTrace();
+		}
 
         String ntp = prefs.getString("ntp_server", null);
         if (ntp == null){
@@ -120,6 +166,14 @@ public class OccultFlashTag extends Activity {
 		}
 		this.accuracy = Integer.valueOf(prefs.getString("accuracy", null));
 
+		String duration = prefs.getString("duration", null);
+		if (duration == null){
+			SharedPreferences.Editor ed = prefs.edit();
+			ed.putString("duration", getText(R.string.out_prefs_flash_duration_default).toString());
+			ed.commit();
+		}
+		this.flashDuration = Integer.valueOf(prefs.getString("duration", null));
+
 		String customNtp = prefs.getString("custom_ntp_server", null);
 		if (customNtp == null){
 			SharedPreferences.Editor ed = prefs.edit();
@@ -136,14 +190,12 @@ public class OccultFlashTag extends Activity {
 		}
 		activeBootCounter = Integer.valueOf(prefs.getInt("boot_count", 0));
 
-
-
 		appData = (DataApplication) getApplication();
 		locationProvider = LocationManager.GPS_PROVIDER;
 
 		configureLocationGPS();
-		locationManager.requestLocationUpdates(locationProvider, 0, 0, locationListener);
-		
+        startLocationListening();
+
 		RadioGroup rg = (RadioGroup) findViewById(R.id.rad_selector);
 	    rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 	            public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -188,19 +240,19 @@ public class OccultFlashTag extends Activity {
 		}
 
 		carregaDadosAsyncTask.execute();
-
+		//gpsTimeTask.execute();
 	}
 
 	private void configureLocationGPS(){
 		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-		locationListener = new LocationListener() {
+	    locationListener = new LocationListener() {
 		    public void onLocationChanged(Location location) {
-		    	if(isBetterLocation(location, bestLocation)){
+				if(isBetterLocation(location, bestLocation)){
 			    	appData.setCurrentAltitude(location.getAltitude());
 			    	appData.setCurrentLatitude(location.getLatitude());
 			    	appData.setCurrentLongitude(location.getLongitude());
-			    	
+
 					TextView txtLatitude = ((TextView) findViewById(R.id.txt_latitude));
 					txtLatitude.setText(String.valueOf(appData.getCurrentLatitude()));
 
@@ -215,8 +267,6 @@ public class OccultFlashTag extends Activity {
 
 		    public void onProviderDisabled(String provider) {}
 		  };
-
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 	
 	@Override
@@ -283,6 +333,9 @@ public class OccultFlashTag extends Activity {
 
 			addToTimeControl();
 
+			Map<String, String> log = new HashMap<String, String>();
+			log.put("Time 1", appData.getTimeForStart().toString());
+			FlurryAgent.logEvent("Start", log);
 		}
 
 
@@ -425,18 +478,29 @@ public class OccultFlashTag extends Activity {
 
 					Event event = appData.getEvent();
 
-					Camera camera = Camera.open();
-					if (camera != null) {
-						Parameters p = camera.getParameters();
-						p.setFlashMode(Parameters.FLASH_MODE_TORCH);
-						camera.setParameters(p);
-
-						camera.startPreview();
+					if (mCameraId != null) {
+						Map<String, String> log = new HashMap<String, String>();
+						try {
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+								mCameraManager.setTorchMode(mCameraId, true);
+							}
+						} catch (Exception e) {
+							Toast.makeText(OccultFlashTag.this,
+									"flash not available", Toast.LENGTH_LONG)
+									.show();
+						}
 						event.addRegisteredTime(SystemClock.elapsedRealtime()); //Changed
+						wait(flashDuration);
 
-						wait(1000);
-						camera.stopPreview();
-						camera.release();
+						try {
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+								mCameraManager.setTorchMode(mCameraId, false);
+							}
+						} catch (Exception e) {
+							Toast.makeText(OccultFlashTag.this,
+									"error on disable flash", Toast.LENGTH_LONG)
+									.show();
+						}
 
 						Long next = event.nextCheckpointTime();
 
@@ -472,6 +536,7 @@ public class OccultFlashTag extends Activity {
 			}
 
 		}
+
 	};
 
 	public String formatTimeByMilliseconds(Long time) {
@@ -663,6 +728,34 @@ public class OccultFlashTag extends Activity {
 			progressDialog.dismiss();
 		}
 	}
+
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		switch (requestCode) {
+			case 101010: {
+				if (grantResults.length > 0	&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					startLocationListening();
+				} else {
+					// permission denied, boo! Disable the
+					// functionality that depends on this permission.
+				}
+				return;
+			}
+		}
+	}
+
+    protected void startLocationListening() {
+        // Register the listener with the Location Manager to receive location updates
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+			ActivityCompat.requestPermissions(this,	new String[]{Manifest.permission.ACCESS_FINE_LOCATION},101010);
+		} else {
+           locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 400, 0, locationListener);
+        }
+    }
+
 
 
 }

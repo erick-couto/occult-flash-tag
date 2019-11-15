@@ -29,6 +29,13 @@
         android:entries="@array/accuracy"
         android:entryValues="@array/accuracy_values"
         android:defaultValue="@string/out_prefs_accuracy_default" />
-
+    <ListPreference
+        android:key="duration"
+        android:title="@string/out_prefs_flash_duration"
+        android:dialogTitle="@string/out_prefs_flash_duration"
+        android:summary="%s"
+        android:entries="@array/flash_duration"
+        android:entryValues="@array/flash_duration_values"
+        android:defaultValue="@string/out_prefs_flash_duration_default" />
 
 </PreferenceScreen>
