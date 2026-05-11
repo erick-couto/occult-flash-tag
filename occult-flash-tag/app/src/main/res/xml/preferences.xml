@@ -50,5 +50,12 @@
         android:inputType="numberDecimal"
         android:key="interval"
         android:title="@string/out_prefs_flash_interval" />
+    <ListPreference
+        android:key="flash_mode"
+        android:title="Flash mode"
+        android:summary="%s"
+        android:entries="@array/flash_modes"
+        android:entryValues="@array/flash_modes_values"
+        android:defaultValue="normal" />
 
 </PreferenceScreen>

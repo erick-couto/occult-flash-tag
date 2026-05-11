@@ -13,20 +13,21 @@ android {
         targetSdkVersion 35
     }
 
-    signingConfigs {
-        release {
-            storeFile file("XXXXX")
-            storePassword "XXXXX"
-            keyAlias "XXXXX"
-            keyPassword "XXXXX"
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file("XXXXX")
+//            storePassword "XXXXX"
+//            keyAlias "XXXXX"
+//            keyPassword "XXXXX"
+//        }
+//    }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 

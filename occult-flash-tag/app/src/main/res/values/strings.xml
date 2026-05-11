@@ -59,6 +59,14 @@
     <string name="out_prefs_video_format_default">33</string>
     <string name="out_prefs_integration_rate">Integration Rate</string>
     <string name="out_prefs_integration_rate_default">1</string>
+    <string-array name="flash_modes">
+        <item>Normal (flash off, blink on)</item>
+        <item>Inverted (flash on, blink off)</item>
+    </string-array>
+    <string-array name="flash_modes_values">
+        <item>normal</item>
+        <item>inverted</item>
+    </string-array>
 
     <string-array name="ntp_servers">
         <item>ARGENTINA - NTP.ORG</item>

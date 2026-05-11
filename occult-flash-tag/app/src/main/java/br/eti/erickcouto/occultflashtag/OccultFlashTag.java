@@ -92,6 +92,8 @@ public class OccultFlashTag extends AppCompatActivity {
 	private int flashInterval;
 	private int activeBootCounter;
 
+	private boolean flashMode;
+
 	private CameraManager mCameraManager;
 	private String mCameraId;
 
@@ -255,6 +257,15 @@ public class OccultFlashTag extends AppCompatActivity {
 		}
 		this.flashInterval = Integer.valueOf(prefs.getString("interval", null));
 
+		String mode = prefs.getString("flash_mode", "normal");
+		flashMode = "inverted".equals(mode);
+		// this.flashMode = false;
+
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
 	}
 
 	private void configureLocationGPS(){
@@ -347,6 +358,14 @@ public class OccultFlashTag extends AppCompatActivity {
 			BtnStop.setClickable(true);
 			BtnStop.setEnabled(true);
 
+			if (flashMode) {
+				try {
+					mCameraManager.setTorchMode(mCameraId, true);
+				} catch (CameraAccessException e) {
+					e.printStackTrace();
+				}
+			}
+
 			addToTimeControl();
 
 			Map<String, String> log = new HashMap<String, String>();
@@ -384,6 +403,14 @@ public class OccultFlashTag extends AppCompatActivity {
 		timeControl.removeCallbacksAndMessages(null);
 
 		clean(true);
+
+		if (flashMode) {
+			try {
+				mCameraManager.setTorchMode(mCameraId, false);
+			} catch (CameraAccessException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void clean(boolean full) {
@@ -500,7 +527,7 @@ public class OccultFlashTag extends AppCompatActivity {
 						Map<String, String> log = new HashMap<String, String>();
 						try {
 							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-								mCameraManager.setTorchMode(mCameraId, true);
+								mCameraManager.setTorchMode(mCameraId, !flashMode);
 							}
 						} catch (Exception e) {
 							Toast.makeText(OccultFlashTag.this,
@@ -512,7 +539,7 @@ public class OccultFlashTag extends AppCompatActivity {
 
 						try {
 							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-								mCameraManager.setTorchMode(mCameraId, false);
+								mCameraManager.setTorchMode(mCameraId, flashMode);
 							}
 						} catch (Exception e) {
 							Toast.makeText(OccultFlashTag.this,
@@ -536,6 +563,19 @@ public class OccultFlashTag extends AppCompatActivity {
 
 							Intent intent = new Intent(OccultFlashTag.this, NtpService.class);
 							startService(intent);
+
+							if (flashMode) {
+								new Thread(() -> {
+									try {
+										Thread.sleep(3000);
+										if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+											mCameraManager.setTorchMode(mCameraId, false);
+										}
+									} catch (InterruptedException | CameraAccessException e) {
+										e.printStackTrace();
+									}
+								}).start();
+							}
 
 						} else {
 							visualCountdown.cancel();

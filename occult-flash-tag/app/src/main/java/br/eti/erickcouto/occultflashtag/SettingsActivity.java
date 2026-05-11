@@ -1,55 +1,62 @@
 package br.eti.erickcouto.occultflashtag;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-import androidx.core.app.NavUtils;
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import android.view.MenuItem;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
+import android.view.View;
+import android.view.ViewGroup;
 
 public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_settings_nuew);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.setting_activity), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 
-            WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
-                    .setAppearanceLightStatusBars(true);
+        // Настройка белого статус-бара с тёмными иконками
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setStatusBarColor(Color.WHITE);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
 
-            return insets;
-        });
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        // Устанавливаем отступ сверху, равный высоте статус-бара
+        int statusBarHeight = getStatusBarHeight();
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) toolbar.getLayoutParams();
+        params.topMargin = statusBarHeight;
+        toolbar.setLayoutParams(params);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, new SettingsFragment())
+                .add(R.id.fragment_container, new SettingsFragment())
                 .commit();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
     }
-    
+
+    private int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
+        if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
 }
+
+
